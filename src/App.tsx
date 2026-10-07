@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { CoverScreen } from './components/CoverScreen';
 import { Navbar } from './components/Navbar';
 import { ProjectCard } from './components/ProjectCard';
@@ -104,7 +105,13 @@ export function App() {
           {/* Hero Section */}
           <section id="hero" className="relative pt-36 pb-20 md:pt-44 md:pb-28 px-4 sm:px-6 max-w-6xl mx-auto">
             {/* Identity Badge Row */}
-            <div className="flex flex-wrap items-center gap-2.5 mb-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-wrap items-center gap-2.5 mb-8"
+            >
               <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 backdrop-blur-md">
                 <Terminal className="w-3.5 h-3.5 text-indigo-400" />
                 16yo Frontend Dev & Vibecoder
@@ -116,7 +123,7 @@ export function App() {
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 Shipping from India 🇮🇳
               </span>
-            </div>
+            </motion.div>
 
             {/* Main Animated Name Display using StrokeText from React Bits */}
             <div className="mb-6 -ml-1 overflow-x-auto py-2">
@@ -124,30 +131,45 @@ export function App() {
                 text="Kushagr Rana"
                 strokeColor="#818cf8"
                 fillColor="#f8fafc"
-                strokeWidth={1.8}
-                drawDuration={1.8}
-                fillDelay={0.3}
+                strokeWidth={2.0}
+                drawDuration={2.8}
+                fillDelay={0.4}
+                stagger={0.07}
                 fontSize={86}
                 fontWeight={900}
                 letterSpacing={-3}
                 fillMode="wipe"
-                trigger="mount"
+                trigger="scroll"
+                active={!showCover}
+                replayOnScroll={true}
                 className="select-none drop-shadow-2xl font-black"
               />
             </div>
 
             {/* Hero Subtitle & Bio Statement */}
-            <div className="max-w-3xl space-y-4 mb-10">
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.85, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-3xl space-y-4 mb-10"
+            >
               <p className="text-xl sm:text-2xl text-slate-200 font-medium leading-relaxed">
                 Crafting high-fidelity, resilient web applications that marry deep frontend architecture with the rapid velocity of modern <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-emerald-400 font-semibold">vibecoding</span>.
               </p>
               <p className="text-base sm:text-lg text-slate-400 leading-relaxed font-normal">
                 I am a 16-year-old student developer from Meerut, India. When I am not in class at Army Public School, I engineer production-grade client applications with React 19, TypeScript, WebGL shaders, and offline-first PWA architectures.
               </p>
-            </div>
+            </motion.div>
 
             {/* Quick Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.3 }}
+              transition={{ duration: 0.85, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-wrap items-center gap-4 pt-2"
+            >
               <button
                 onClick={scrollToWorks}
                 className="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-sm text-white bg-indigo-600 hover:bg-indigo-500 shadow-xl shadow-indigo-600/25 transition-all duration-200 active:scale-95"
@@ -173,10 +195,16 @@ export function App() {
                 {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-slate-400" />}
                 <span>{copiedEmail ? 'Email Copied!' : 'Copy Email'}</span>
               </button>
-            </div>
+            </motion.div>
 
             {/* Stats / Proof Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16 pt-12 border-t border-white/10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16 pt-12 border-t border-white/10"
+            >
               <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5">
                 <div className="text-2xl sm:text-3xl font-extrabold text-white font-mono">3+</div>
                 <div className="text-xs text-slate-400 mt-1 font-medium">Flagship Systems Built</div>
@@ -193,13 +221,19 @@ export function App() {
                 <div className="text-2xl sm:text-3xl font-extrabold text-purple-400 font-mono">React 19</div>
                 <div className="text-xs text-slate-400 mt-1 font-medium">Modern Web Architecture</div>
               </div>
-            </div>
+            </motion.div>
           </section>
 
           {/* About & The Philosophy of Vibecoding */}
           <section id="about" className="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-              <div className="md:col-span-5 space-y-4">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                className="md:col-span-5 space-y-4"
+              >
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold uppercase tracking-wider text-indigo-300">
                   <Compass className="w-3.5 h-3.5" />
                   <span>The Engineering Mindset</span>
@@ -210,40 +244,64 @@ export function App() {
                 <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
                   Too many people view AI-assisted coding as cutting corners. For me, <span className="text-slate-200 font-medium">vibecoding</span> is the superpower of multiplying high-taste vision into reality at the speed of thought.
                 </p>
-              </div>
+              </motion.div>
 
               <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-indigo-500/30 transition-colors">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-indigo-500/30 transition-colors"
+                >
                   <Zap className="w-6 h-6 text-indigo-400 mb-3" />
                   <h3 className="text-base font-bold text-white mb-2">High Craft & Tactile Motion</h3>
                   <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
                     Every interaction should feel alive. From GSAP SVG stroke animations and 3D folding panels to WebGL fluid shaders, interfaces should reward curiosity.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-emerald-500/30 transition-colors">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-emerald-500/30 transition-colors"
+                >
                   <ShieldCheck className="w-6 h-6 text-emerald-400 mb-3" />
                   <h3 className="text-base font-bold text-white mb-2">Real Indian & Global Utility</h3>
                   <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
                     Building tools that actually help people: lifesaving emergency first-aid in RakshaSetu, ancestral Ayurvedic wellness in Ahaar Amrit, and focus in FocusFlow.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-purple-500/30 transition-colors">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-purple-500/30 transition-colors"
+                >
                   <Cpu className="w-6 h-6 text-purple-400 mb-3" />
                   <h3 className="text-base font-bold text-white mb-2">Zero-Bloat Architecture</h3>
                   <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
                     Deep respect for client compute. Clean bundle splits, typed data contracts in TypeScript, and zero reliance on heavy server backends for offline resilience.
                   </p>
-                </div>
+                </motion.div>
 
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-amber-500/30 transition-colors">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-amber-500/30 transition-colors"
+                >
                   <Code2 className="w-6 h-6 text-amber-400 mb-3" />
                   <h3 className="text-base font-bold text-white mb-2">Speed Meets Relentless Grit</h3>
                   <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
                     Juggling Class 10 school examinations with late-night coding sessions, shipping real software, testing on physical devices, and refining every edge case.
                   </p>
-                </div>
+                </motion.div>
               </div>
             </div>
           </section>
@@ -251,7 +309,13 @@ export function App() {
           {/* Selected Works Section with BlurText Header and BorderGlow + SpecularButton Cards */}
           <section id="works" className="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
             {/* Section Tag */}
-            <div className="flex flex-col items-center text-center mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.25 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col items-center text-center mb-12"
+            >
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold uppercase tracking-wider text-indigo-300 mb-4">
                 <Layers className="w-3.5 h-3.5" />
                 <span>Solo Portfolio Showcase</span>
@@ -261,7 +325,8 @@ export function App() {
               <div className="mb-4">
                 <BlurText
                   text="My Works as solo developer"
-                  delay={80}
+                  delay={120}
+                  stepDuration={0.45}
                   animateBy="words"
                   className="text-3xl sm:text-5xl font-black text-white tracking-tight"
                 />
@@ -270,23 +335,36 @@ export function App() {
               <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
                 Three independent flagship web products conceived, architected, and built from scratch as a solo developer.
               </p>
-            </div>
+            </motion.div>
 
             {/* Grid of 3 Project Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-              {PROJECTS.map((project) => (
-                <ProjectCard
+              {PROJECTS.map((project, index) => (
+                <motion.div
                   key={project.id}
-                  project={project}
-                  onPreview={(p) => setSelectedProject(p)}
-                />
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ duration: 0.85, delay: index * 0.18, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <ProjectCard
+                    project={project}
+                    onPreview={(p) => setSelectedProject(p)}
+                  />
+                </motion.div>
               ))}
             </div>
           </section>
 
           {/* Tech Stack Grid */}
           <section id="stack" className="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
-            <div className="bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-12">
+            <motion.div
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-12"
+            >
               <div className="text-center max-w-xl mx-auto mb-10">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">
                   Technologies & Craft
@@ -345,7 +423,7 @@ export function App() {
                   </ul>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </section>
 
           {/* Recruiter Feedback Section (With DodgeField & Confetti) */}

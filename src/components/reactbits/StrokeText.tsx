@@ -27,6 +27,8 @@ export interface StrokeTextProps {
   reverse?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  active?: boolean;
+  replayOnScroll?: boolean;
 }
 
 export const StrokeText: React.FC<StrokeTextProps> = ({
@@ -45,7 +47,9 @@ export const StrokeText: React.FC<StrokeTextProps> = ({
   letterSpacing = -4,
   reverse = false,
   className = '',
-  style = {}
+  style = {},
+  active = true,
+  replayOnScroll = true
 }) => {
   const rootRef = useRef<HTMLSpanElement>(null);
   const strokeTextRef = useRef<SVGTextElement>(null);
@@ -176,9 +180,17 @@ export const StrokeText: React.FC<StrokeTextProps> = ({
       return tl;
     };
 
+    if (!active) {
+      setStart();
+      return () => {
+        gsap.killTweensOf(targets);
+      };
+    }
+
     let timeline: gsap.core.Timeline | null = null;
-    let scrollTrigger: ScrollTrigger | null = null;
+    let observer: IntersectionObserver | null = null;
     let removeHover: (() => void) | null = null;
+    let removeScroll: (() => void) | null = null;
 
     if (trigger === 'hover') {
       setEnd();
@@ -191,13 +203,43 @@ export const StrokeText: React.FC<StrokeTextProps> = ({
       removeHover = () => root.removeEventListener('pointerenter', play);
     } else {
       timeline = build();
-      if (trigger === 'scroll') {
-        scrollTrigger = ScrollTrigger.create({
-          trigger: root,
-          start: 'top 82%',
-          once: true,
-          onEnter: () => timeline?.play(0)
-        });
+
+      if (replayOnScroll || trigger === 'scroll') {
+        observer = new IntersectionObserver(
+          entries => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                if (active) {
+                  timeline?.restart();
+                }
+              } else {
+                setStart();
+                timeline?.pause(0);
+              }
+            }
+          },
+          { threshold: 0.15 }
+        );
+        observer.observe(root);
+
+        // Replay when user scrolls back to the very top
+        let wasScrolled = false;
+        const handleTopScroll = () => {
+          const y = window.scrollY;
+          if (y > 140) {
+            wasScrolled = true;
+          } else if (y <= 30 && wasScrolled && active) {
+            wasScrolled = false;
+            timeline?.restart();
+          }
+        };
+        window.addEventListener('scroll', handleTopScroll, { passive: true });
+        removeScroll = () => window.removeEventListener('scroll', handleTopScroll);
+
+        const rect = root.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          timeline.play(0);
+        }
       } else {
         timeline.play(0);
       }
@@ -205,11 +247,12 @@ export const StrokeText: React.FC<StrokeTextProps> = ({
 
     return () => {
       removeHover?.();
-      scrollTrigger?.kill();
+      removeScroll?.();
+      observer?.disconnect();
       timeline?.kill();
       gsap.killTweensOf(targets);
     };
-  }, [box, dash, drawDuration, fillDelay, stagger, ease, trigger, fillMode, reverse]);
+  }, [box, dash, drawDuration, fillDelay, stagger, ease, trigger, fillMode, reverse, active, replayOnScroll]);
 
   const viewBox = box ? `${box.x} ${box.y} ${box.width} ${box.height}` : `0 ${-fontSize} 600 ${fontSize * 1.3}`;
 

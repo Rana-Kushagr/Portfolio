@@ -11,6 +11,12 @@ interface CoverScreenProps {
 export const CoverScreen: React.FC<CoverScreenProps> = ({ onEnter, isOpen }) => {
   const [isExiting, setIsExiting] = useState(false);
 
+  React.useEffect(() => {
+    if (isOpen) {
+      setIsExiting(false);
+    }
+  }, [isOpen]);
+
   const handleEnter = () => {
     setIsExiting(true);
     setTimeout(() => {
@@ -59,8 +65,8 @@ export const CoverScreen: React.FC<CoverScreenProps> = ({ onEnter, isOpen }) => 
               splitBy="word"
               hinge="top"
               trigger="mount"
-              duration={0.75}
-              stagger={0.06}
+              duration={1.2}
+              stagger={0.12}
               perspective={800}
               creaseShading={0.65}
               fontSize="clamp(2rem, 5.5vw, 4.25rem)"
@@ -74,7 +80,7 @@ export const CoverScreen: React.FC<CoverScreenProps> = ({ onEnter, isOpen }) => 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 1.1 }}
             className="relative z-10 flex flex-col items-center gap-4 max-w-xl mx-auto mb-10"
           >
             <p className="text-base sm:text-lg text-slate-400 font-normal leading-relaxed">
@@ -96,7 +102,7 @@ export const CoverScreen: React.FC<CoverScreenProps> = ({ onEnter, isOpen }) => 
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 1.1 }}
+            transition={{ duration: 0.6, delay: 1.5 }}
             className="relative z-10 flex flex-col items-center gap-3"
           >
             <button

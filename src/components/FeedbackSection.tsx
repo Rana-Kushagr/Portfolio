@@ -45,7 +45,13 @@ export const FeedbackSection: React.FC = () => {
 
   return (
     <section id="feedback" className="relative py-20 px-4 sm:px-6 max-w-4xl mx-auto text-center">
-      <div className="relative z-10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] border border-white/10 rounded-3xl p-8 sm:p-12 shadow-2xl backdrop-blur-md overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] border border-white/10 rounded-3xl p-8 sm:p-12 shadow-2xl backdrop-blur-md overflow-hidden"
+      >
         {/* Glow ambient background inside card */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -146,7 +152,7 @@ export const FeedbackSection: React.FC = () => {
             You chased it down! If you have constructive feedback or feature ideas, connect on GitHub or email!
           </div>
         )}
-      </div>
+      </motion.div>
     </section>
   );
 };
