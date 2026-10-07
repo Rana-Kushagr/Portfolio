@@ -200,14 +200,17 @@ export default function DodgeField({
       pointer.current = null;
       tick();
     };
+    const onScroll = () => {
+      if (pointer.current) tick();
+    };
     window.addEventListener('pointermove', onMove, { passive: true });
-    window.addEventListener('scroll', tick, { passive: true, capture: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
     document.addEventListener('pointerleave', onLeave);
     window.addEventListener('blur', onLeave);
     return () => {
       query.removeEventListener('change', sync);
       window.removeEventListener('pointermove', onMove);
-      window.removeEventListener('scroll', tick, { capture: true });
+      window.removeEventListener('scroll', onScroll);
       document.removeEventListener('pointerleave', onLeave);
       window.removeEventListener('blur', onLeave);
       cancelAnimationFrame(raf.current);

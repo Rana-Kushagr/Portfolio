@@ -6,12 +6,22 @@
   color-scheme: dark;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   background-color: #05060b;
   color: #f4f4f5;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.border-glow-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Custom Sleek Scrollbar */

@@ -176,9 +176,13 @@ export const SpecularButton: React.FC<SpecularButtonProps> = ({
     ro.observe(btn);
     resize();
 
+    let isVisible = true;
     let pointerAngle: number | null = null;
     let proximityT = 0;
+    let raf = 0;
+
     const onPointerMove = (e: MouseEvent) => {
+      if (!isVisible) return;
       const rect = btn.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
@@ -195,20 +199,29 @@ export const SpecularButton: React.FC<SpecularButtonProps> = ({
       }
       const t = Math.max(0, 1 - dist / Math.max(propsRef.current.proximity, 1));
       proximityT = t * t * (3 - 2 * t);
+
+      // Wake up loop when pointer approaches
+      if (!raf && isVisible && (proximityT > 0 || propsRef.current.autoAnimate)) {
+        last = performance.now();
+        raf = requestAnimationFrame(update);
+      }
     };
-    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
 
     let angle = 2.4;
     let idleAngle = 2.4;
     let bright = 0;
     let last = performance.now();
-    let raf = 0;
 
     const lineC = new Color();
     const baseC = new Color();
 
     const update = (now: number) => {
-      raf = requestAnimationFrame(update);
+      if (!isVisible) {
+        raf = 0;
+        return;
+      }
+
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
       const p = propsRef.current;
@@ -233,11 +246,31 @@ export const SpecularButton: React.FC<SpecularButtonProps> = ({
       program.uniforms.uShineFade.value = (p.shineFade * Math.PI) / 180;
       program.uniforms.uThickness.value = p.thickness * dpr;
       renderer.render({ scene: mesh });
+
+      // Sleep if completely dim and not auto-animated to save GPU
+      if (!p.autoAnimate && proximityT === 0 && bright < 0.005) {
+        raf = 0;
+        return;
+      }
+
+      raf = requestAnimationFrame(update);
     };
-    raf = requestAnimationFrame(update);
+
+    const io = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible && !raf && (proximityT > 0 || propsRef.current.autoAnimate)) {
+        last = performance.now();
+        raf = requestAnimationFrame(update);
+      } else if (!isVisible && raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    });
+    io.observe(btn);
 
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       ro.disconnect();
       window.removeEventListener('pointermove', onPointerMove);
       if (gl.canvas.parentNode === fx) fx.removeChild(gl.canvas);

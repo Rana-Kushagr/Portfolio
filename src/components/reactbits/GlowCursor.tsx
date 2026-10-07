@@ -95,7 +95,7 @@ void main() {
     colorWeight += intensity;
   }
 
-  float grain = filmGrain(pixel, uTime);
+  float grain = uNoiseStrength > 0.001 ? filmGrain(pixel, uTime) : 0.0;
   float noiseAmount = (1.0 - exp(-uNoiseStrength * 2.2)) * 0.4;
   float alpha = clamp(strongest * uOpacity * uFade, 0.0, 1.0);
   if (alpha < 0.0005) discard;
@@ -292,6 +292,10 @@ const GlowCursor: React.FC<GlowCursorProps> = ({
       target.y = y;
       pointerInside = true;
       lastInputTime = performance.now();
+      if (!raf && !destroyed) {
+        lastFrameTime = performance.now();
+        raf = requestAnimationFrame(render);
+      }
     };
 
     const onPointerLeave = () => {
@@ -348,14 +352,20 @@ const GlowCursor: React.FC<GlowCursorProps> = ({
       program.uniforms.uFade.value = fade;
 
       renderer.render({ scene: mesh });
+
+      // Idle sleeping: pause loop when trail is fully faded to save 100% GPU
+      if (fade <= 0.005 && fadeTarget === 0) {
+        raf = 0;
+        return;
+      }
+
       if (!destroyed) raf = requestAnimationFrame(render);
     };
 
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
-    container.addEventListener('pointermove', updatePointer);
-    container.addEventListener('pointerenter', updatePointer);
-    container.addEventListener('pointerleave', onPointerLeave);
+    window.addEventListener('pointermove', updatePointer, { passive: true });
+    window.addEventListener('pointerleave', onPointerLeave, { passive: true });
     resize();
     raf = requestAnimationFrame(render);
 
@@ -363,9 +373,8 @@ const GlowCursor: React.FC<GlowCursorProps> = ({
       destroyed = true;
       cancelAnimationFrame(raf);
       resizeObserver.disconnect();
-      container.removeEventListener('pointermove', updatePointer);
-      container.removeEventListener('pointerenter', updatePointer);
-      container.removeEventListener('pointerleave', onPointerLeave);
+      window.removeEventListener('pointermove', updatePointer);
+      window.removeEventListener('pointerleave', onPointerLeave);
       mesh.geometry.remove();
       program.remove();
     };

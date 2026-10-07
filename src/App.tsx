@@ -49,16 +49,19 @@ export function App() {
       {/* 1. Cover Screen Intro (Animated entrance with FoldText) */}
       <CoverScreen isOpen={showCover} onEnter={() => setShowCover(false)} />
 
-      {/* 2. WebGL Plasma Fluid Background Shader */}
+      {/* 2. WebGL Plasma Fluid Background Shader (Optimized for 60fps butter-smooth rendering) */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-25">
         <Plasma
           color="#6366f1"
-          speed={0.45}
+          speed={0.35}
           direction="forward"
           scale={1.2}
-          opacity={0.35}
-          mouseInteractive={true}
-          renderScale={0.4}
+          opacity={0.3}
+          mouseInteractive={false}
+          renderScale={0.22}
+          iterations={18}
+          targetFps={35}
+          maxDpr={1.0}
         />
       </div>
 
@@ -68,21 +71,26 @@ export function App() {
         <div className="absolute bottom-1/3 right-1/4 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[160px]" />
       </div>
 
-      {/* 3. Interactive WebGL Glow Cursor Ribbon Trail */}
-      <GlowCursor
-        color="#818cf8"
-        secondaryColor="#34d399"
-        trailLength={36}
-        trailWidth={7}
-        glowIntensity={1.8}
-        glowSpread={1.1}
-        followSpeed={0.2}
-        className="relative z-10 w-full min-h-screen"
-      >
-        {/* Navigation Bar */}
-        <Navbar onReopenCover={() => setShowCover(true)} />
+      {/* 3. Interactive WebGL Glow Cursor Ribbon Trail (Viewport-fixed overlay, ultra-lightweight) */}
+      <div className="fixed inset-0 pointer-events-none z-30 overflow-hidden">
+        <GlowCursor
+          color="#818cf8"
+          secondaryColor="#34d399"
+          trailLength={22}
+          trailWidth={6}
+          glowIntensity={1.5}
+          glowSpread={0.9}
+          followSpeed={0.22}
+          noiseStrength={0}
+          maxDevicePixelRatio={1.0}
+          className="w-full h-full"
+        />
+      </div>
 
-        <main className="relative z-10">
+      {/* Navigation Bar */}
+      <Navbar onReopenCover={() => setShowCover(true)} />
+
+      <main className="relative z-10">
           {/* Hero Section */}
           <section id="hero" className="relative pt-36 pb-20 md:pt-44 md:pb-28 px-4 sm:px-6 max-w-6xl mx-auto">
             {/* Identity Badge Row */}
@@ -381,7 +389,6 @@ export function App() {
             </div>
           </footer>
         </main>
-      </GlowCursor>
 
       {/* Interactive Project Preview Modal */}
       <ProjectModal

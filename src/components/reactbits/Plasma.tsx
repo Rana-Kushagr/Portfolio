@@ -21,7 +21,7 @@ void main() {
 
 const ORIGINAL_QUALITY = 60;
 
-const buildFragment = (_iterations: number) => {
+const buildFragment = (iterations: number) => {
   return `#version 300 es
 precision highp float;
 uniform vec2 iResolution;
@@ -49,7 +49,7 @@ void mainImage(out vec4 o, vec2 C) {
   float i, d, z, T = iTime * uSpeed * uDirection;
   vec3 O, p, S;
 
-  for (vec2 r = iResolution.xy, Q; ++i < 60.0; O += o.w/d*o.xyz) {
+  for (vec2 r = iResolution.xy, Q; ++i < ${iterations.toFixed(1)}; O += o.w/d*o.xyz) {
     p = z*normalize(vec3(C-.5*r,r.y)); 
     p.z -= 4.; 
     S = p;
@@ -59,7 +59,6 @@ void mainImage(out vec4 o, vec2 C) {
     Q = p.xz *= mat2(cos(p.y+vec4(0,11,33,0)-T)); 
     z += d = (abs(sqrt(length(Q*Q)) - .25*(5.+S.y))/3.+8e-4) * uStepScale;
     o = 1.+sin(S.y+p.z*.5+S.z-length(S-p)+vec4(2,1,0,8));
-    if (i >= uQuality) break;
   }
   
   o.xyz = tanh(O/1e4);
