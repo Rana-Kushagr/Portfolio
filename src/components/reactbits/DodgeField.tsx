@@ -88,7 +88,24 @@ export default function DodgeField({
   const [inside, setInside] = useState(false);
   const [dodges, setDodges] = useState(0);
   const [caught, setCaught] = useState(false);
-  const gave = dodges >= Math.max(1, patience);
+  const [isChasing, setIsChasing] = useState(false);
+  const [activeSeconds, setActiveSeconds] = useState(0);
+
+  useEffect(() => {
+    if ((inside || dodges > 0) && !isChasing) {
+      setIsChasing(true);
+    }
+  }, [inside, dodges, isChasing]);
+
+  useEffect(() => {
+    if (!isChasing) return;
+    const timer = setInterval(() => {
+      setActiveSeconds(s => s + 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [isChasing]);
+
+  const gave = activeSeconds >= 10;
   const still = gave || caught || disabled || !!reduce;
 
   const pointer = useRef<{ x: number; y: number } | null>(null);
@@ -108,7 +125,8 @@ export default function DodgeField({
     wall,
     still,
     inside,
-    reduce
+    reduce,
+    activeSeconds
   });
   live.current = {
     reach,
@@ -121,7 +139,8 @@ export default function DodgeField({
     wall,
     still,
     inside,
-    reduce
+    reduce,
+    activeSeconds
   };
 
   useEffect(() => {
@@ -165,9 +184,11 @@ export default function DodgeField({
       }
     }
     if (Number.isFinite(d) && d > DEAD_ZONE) bearing.current = bearingOf(dx, dy, d, L.axis);
+    const reachMultiplier = L.activeSeconds >= 8 && L.activeSeconds < 10 ? 0.42 : 1.0;
+    const currentReach = L.reach * reachMultiplier;
     const flee = isInside && !L.still ? (1 - d / L.radius) ** L.falloff : 0;
-    const tx = wallIt(-bearing.current.x * flee * L.reach, room.current.x, L.wall);
-    const ty = wallIt(-bearing.current.y * flee * L.reach, room.current.y, L.wall);
+    const tx = wallIt(-bearing.current.x * flee * currentReach, room.current.x, L.wall);
+    const ty = wallIt(-bearing.current.y * flee * currentReach, room.current.y, L.wall);
     if (L.reduce) {
       x.jump(0);
       y.jump(0);
@@ -244,23 +265,32 @@ export default function DodgeField({
   };
 
   const state: DodgeFieldState = { dodges, gave, caught, fleeing: inside && !still };
-  const index = gave || caught ? taunts.length - 1 : Math.min(dodges, Math.max(0, taunts.length - 2));
+
+  // Timed Label Progression:
+  // 0s-4s: "No" / "Nope!"
+  // 5s-7s: "Keep trying!"
+  // 8s-9s: "Almost!"
+  // 10s+: "Okay, okay 😄"
+  let currentLabel = 'No';
+  if (gave || caught || activeSeconds >= 10) {
+    currentLabel = 'Okay, okay 😄';
+  } else if (activeSeconds >= 8) {
+    currentLabel = 'Almost!';
+  } else if (activeSeconds >= 5) {
+    currentLabel = 'Keep trying!';
+  } else if (dodges > 0) {
+    currentLabel = dodges % 2 === 1 ? 'Nope!' : 'No';
+  }
+
   const content =
     typeof children === 'function'
       ? children(state)
       : (children ?? (
-          <button type="button" className="dodge-field__pill" aria-label={taunts[0]}>
+          <button type="button" className="dodge-field__pill" aria-label={currentLabel}>
             <span className="dodge-field__labels">
-              {taunts.map((taunt, i) => (
-                <span
-                  key={`${taunt}-${i}`}
-                  className="dodge-field__label"
-                  data-active={i === index ? 'true' : 'false'}
-                  aria-hidden="true"
-                >
-                  {taunt}
-                </span>
-              ))}
+              <span className="dodge-field__label font-medium" data-active="true" aria-hidden="true">
+                {currentLabel}
+              </span>
             </span>
           </button>
         ));
