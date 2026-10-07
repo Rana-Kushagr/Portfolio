@@ -62,39 +62,40 @@ export const FeedbackSection: React.FC = () => {
         </p>
 
         {/* Reaction Buttons */}
-        <div className="flex flex-col items-center justify-center gap-6">
-          <div className="flex flex-wrap items-center justify-center gap-5 z-10">
-            {/* Yes Button */}
+        <div className="flex flex-col items-center justify-center gap-5">
+          <div className="flex flex-wrap items-center justify-center gap-4 z-10">
+            {/* Yes Button (Compact & Sleek) */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleYesClick}
-              className={`inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-bold transition-all shadow-lg ${
+              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-md ${
                 hasLiked
                   ? 'bg-emerald-500 text-white shadow-emerald-500/30'
                   : 'bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white shadow-emerald-500/20'
               }`}
             >
-              <ThumbsUp className="w-5 h-5 fill-current" />
+              <ThumbsUp className="w-4 h-4 fill-current" />
               <span>{hasLiked ? 'Loved It! 🎉' : 'Yes, absolutely!'}</span>
-              <Sparkles className="w-4 h-4 text-emerald-200" />
+              <Sparkles className="w-3.5 h-3.5 text-emerald-200" />
             </motion.button>
           </div>
 
-          {/* Interactive DodgeField for "No" Button */}
-          <div className="w-full max-w-md mx-auto pt-2">
-            <div className="text-xs text-slate-500 uppercase tracking-widest font-mono mb-1">
+          {/* Interactive DodgeField for "No" Button (Smaller, faster, evasive) */}
+          <div className="w-full max-w-sm mx-auto pt-1">
+            <div className="text-[11px] text-slate-500 uppercase tracking-widest font-mono mb-1">
               (Try catching "No" below 😉)
             </div>
             <DodgeField
-              fieldHeight={120}
-              radius={110}
-              reach={90}
-              falloff={2.2}
-              patience={5}
+              fieldHeight={100}
+              radius={160}
+              reach={135}
+              falloff={1.5}
+              fleeDuration={90}
+              patience={8}
               inkColor="#ef4444"
               contrastColor="#ffffff"
-              taunts={['No', 'Nope!', 'Too slow!', 'Almost!', 'Try again!', 'Okay, okay! 😄']}
+              taunts={['No', 'Nope!', 'Too slow!', 'Almost!', 'Keep trying!', 'Nope x2', 'Whoops!', 'Okay, okay! 😄']}
               onRelent={() => setRelented(true)}
               onCatch={() => {
                 alert('You caught it! But you really loved the vibes, admit it! 😉');
