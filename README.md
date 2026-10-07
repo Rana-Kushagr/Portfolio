@@ -3,6 +3,9 @@
 > **16-Year-Old Frontend Developer & Vibecoder** | Class 10 at Army Public School (APS) Meerut Cantt, India 🇮🇳  
 > High-performance, tactile web applications crafted with React 19, TypeScript, WebGL shaders, and GSAP motion design.
 
+🌐 **Live Website**: [https://rana-kushagr.github.io/Portfolio/](https://rana-kushagr.github.io/Portfolio/)  
+📦 **Repository**: [https://github.com/Rana-Kushagr/Portfolio](https://github.com/Rana-Kushagr/Portfolio)
+
 ---
 
 ## 🌟 Overview
@@ -74,10 +77,10 @@ The site combines architectural rigor with the velocity of modern **vibecoding**
 
 ```bash
 # Clone the repository
-git clone https://github.com/rana-kushagr/kushagr-portfolio.git
+git clone https://github.com/Rana-Kushagr/Portfolio.git
 
 # Navigate into directory
-cd kushagr-portfolio
+cd Portfolio
 
 # Install dependencies
 npm install
