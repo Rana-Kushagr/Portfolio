@@ -31,8 +31,8 @@ export const PROJECTS: ProjectData[] = [
     ],
     impact:
       'Bridging timeless Vedic nutritional wisdom with clean modern UI/UX for urban youth and families seeking natural, restorative living.',
-    demoUrl: 'https://rana-kushagr.github.io/Focus-Flow/',
-    githubUrl: 'https://github.com/rana-kushagr'
+    demoUrl: 'https://ahaar-amrit.lovable.app',
+    githubUrl: 'https://github.com/Rana-Kushagr'
   },
   {
     id: 'raksha-setu',
@@ -64,8 +64,8 @@ export const PROJECTS: ProjectData[] = [
     ],
     impact:
       'Empowers everyday citizens across India to act with precision during the critical 10 minutes of medical emergencies before ambulances arrive.',
-    demoUrl: 'https://rana-kushagr.github.io/Focus-Flow/',
-    githubUrl: 'https://github.com/rana-kushagr'
+    demoUrl: 'https://rana-kushagr.github.io/Raksha-Setu/',
+    githubUrl: 'https://github.com/Rana-Kushagr/Raksha-Setu'
   },
   {
     id: 'focus-flow',
@@ -98,6 +98,6 @@ export const PROJECTS: ProjectData[] = [
     impact:
       'Created to help students and developers eliminate cognitive context switching and sustain effortless deep-work momentum.',
     demoUrl: 'https://rana-kushagr.github.io/Focus-Flow/',
-    githubUrl: 'https://github.com/rana-kushagr/Focus-Flow'
+    githubUrl: 'https://github.com/Rana-Kushagr/Focus-Flow'
   }
 ];
