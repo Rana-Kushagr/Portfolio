@@ -38,7 +38,7 @@ export const FeedbackSection: React.FC = () => {
   };
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('kushagr.rana2009@gmail.com');
+    navigator.clipboard.writeText('kushagrrana7345@gmail.com');
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2500);
   };

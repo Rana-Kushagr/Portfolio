@@ -35,7 +35,7 @@ export function App() {
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('kushagr.rana2009@gmail.com');
+    navigator.clipboard.writeText('kushagrrana7345@gmail.com');
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
@@ -359,11 +359,11 @@ export function App() {
               {/* Contact Buttons */}
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <a
-                  href="mailto:kushagr.rana2009@gmail.com"
+                  href="mailto:kushagrrana7345@gmail.com"
                   className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-colors shadow-md shadow-indigo-600/20"
                 >
                   <Mail className="w-3.5 h-3.5" />
-                  <span>kushagr.rana2009@gmail.com</span>
+                  <span>kushagrrana7345@gmail.com</span>
                 </a>
                 <a
                   href="https://github.com/rana-kushagr"

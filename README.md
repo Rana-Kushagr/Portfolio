@@ -100,8 +100,8 @@ npm run preview
 
 ## 📬 Connect with Kushagr
 
-- **Email**: [kushagr.rana2009@gmail.com](mailto:kushagr.rana2009@gmail.com)
-- **GitHub**: [github.com/rana-kushagr](https://github.com/rana-kushagr)
+- **Email**: [kushagrrana7345@gmail.com](mailto:kushagrrana7345@gmail.com)
+- **GitHub**: [github.com/Rana-Kushagr](https://github.com/Rana-Kushagr)
 - **Location**: Meerut Cantt, Uttar Pradesh, India 🇮🇳
 
 ---
