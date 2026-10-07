@@ -130,15 +130,15 @@ export function App() {
               <StrokeText
                 text="Kushagr Rana"
                 strokeColor="#818cf8"
-                fillColor="#f8fafc"
+                fillColor="#ffffff"
                 strokeWidth={2.0}
-                drawDuration={2.8}
-                fillDelay={0.4}
-                stagger={0.07}
+                drawDuration={2.6}
+                fillDelay={0.3}
+                stagger={0.06}
                 fontSize={86}
                 fontWeight={900}
                 letterSpacing={-3}
-                fillMode="wipe"
+                fillMode="fade"
                 trigger="scroll"
                 active={!showCover}
                 replayOnScroll={true}

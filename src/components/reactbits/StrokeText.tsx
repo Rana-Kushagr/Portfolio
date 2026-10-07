@@ -53,12 +53,8 @@ export const StrokeText: React.FC<StrokeTextProps> = ({
 }) => {
   const rootRef = useRef<HTMLSpanElement>(null);
   const strokeTextRef = useRef<SVGTextElement>(null);
-  const wipeRectRef = useRef<SVGRectElement>(null);
 
   const [box, setBox] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
-
-  const rawId = useId();
-  const wipeId = `stroke-text-wipe-${rawId.replace(/[^a-zA-Z0-9_-]/g, '')}`;
 
   const characters = useMemo(() => Array.from(String(text ?? '')), [text]);
 
@@ -119,31 +115,27 @@ export const StrokeText: React.FC<StrokeTextProps> = ({
 
   useEffect(() => {
     const root = rootRef.current;
-    if (typeof window === 'undefined' || !root || !box) return undefined;
+    if (typeof window === 'undefined' || !root) return undefined;
 
     const strokes = gsap.utils.toArray(root.querySelectorAll('[data-stroke-char]'));
     const fills = gsap.utils.toArray(root.querySelectorAll('[data-fill-char]'));
-    const wipe = wipeRectRef.current;
     if (!strokes.length) return undefined;
 
     const fillEnabled = fillMode !== 'none';
-    const useWipe = fillEnabled && fillMode === 'wipe';
-    const fillDuration = Math.max(0.4, drawDuration * 0.5);
-    const staggerConfig = reverse ? { each: stagger, from: 'end' as const } : stagger;
-    const targets = [...strokes, ...fills, wipe].filter(Boolean);
+    const fillDuration = Math.max(0.6, drawDuration * 0.45);
+    const staggerConfig = reverse ? { each: stagger, from: 'end' as const } : { each: stagger, from: 'start' as const };
+    const targets = [...strokes, ...fills].filter(Boolean);
 
     const setStart = () => {
       gsap.killTweensOf(targets);
       gsap.set(strokes, { strokeDasharray: dash, strokeDashoffset: dash });
-      gsap.set(fills, { opacity: useWipe ? 1 : 0 });
-      if (wipe) gsap.set(wipe, { attr: { width: 0 } });
+      gsap.set(fills, { opacity: 0 });
     };
 
     const setEnd = () => {
       gsap.killTweensOf(targets);
       gsap.set(strokes, { strokeDasharray: dash, strokeDashoffset: 0 });
-      gsap.set(fills, { opacity: fillEnabled ? 1 : 0 });
-      if (wipe) gsap.set(wipe, { attr: { width: fillEnabled ? box.width : 0 } });
+      gsap.set(fills, { opacity: 1 });
     };
 
     const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -163,17 +155,16 @@ export const StrokeText: React.FC<StrokeTextProps> = ({
 
       tl.to(strokes, { strokeDashoffset: 0, duration: drawDuration, ease, stagger: staggerConfig as any }, 0);
 
-      if (useWipe && wipe) {
-        tl.to(
-          wipe,
-          { attr: { width: box.width }, duration: fillDuration, ease: 'power2.inOut' },
-          drawDuration + fillDelay
-        );
-      } else if (fillEnabled) {
+      if (fillEnabled) {
         tl.to(
           fills,
-          { opacity: 1, duration: fillDuration, ease: 'power2.out', stagger: staggerConfig as any },
-          drawDuration + fillDelay
+          {
+            opacity: 1,
+            duration: fillDuration,
+            ease: 'power2.out',
+            stagger: { each: 0.08, from: reverse ? 'end' : 'start' }
+          },
+          drawDuration * 0.65 + fillDelay
         );
       }
 
@@ -265,14 +256,6 @@ export const StrokeText: React.FC<StrokeTextProps> = ({
       aria-label={String(text ?? '')}
     >
       <svg className="stroke-text__svg" viewBox={viewBox} preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-        {fillMode === 'wipe' && box && (
-          <defs>
-            <clipPath id={wipeId} clipPathUnits="userSpaceOnUse">
-              <rect ref={wipeRectRef} x={box.x} y={box.y} width="0" height={box.height} />
-            </clipPath>
-          </defs>
-        )}
-
         <text
           ref={strokeTextRef}
           className="stroke-text__stroke"
@@ -299,7 +282,6 @@ export const StrokeText: React.FC<StrokeTextProps> = ({
           fill={fillColor}
           stroke="none"
           style={fontStyle}
-          clipPath={fillMode === 'wipe' && box ? `url(#${wipeId})` : undefined}
         >
           {characters.map((char, index) => (
             <tspan data-fill-char key={`f-${index}`}>
