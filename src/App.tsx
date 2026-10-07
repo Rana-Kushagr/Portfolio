@@ -49,7 +49,17 @@ export function App() {
       {/* 1. Cover Screen Intro (Animated entrance with FoldText) */}
       <CoverScreen isOpen={showCover} onEnter={() => setShowCover(false)} />
 
-      {/* 2. WebGL Plasma Fluid Background Shader (Optimized for 60fps butter-smooth rendering) */}
+      {/* 2. Ambient Aesthetic Wallpaper Backdrop */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <img
+          src="./assets/bg.jpg"
+          alt=""
+          className="w-full h-full object-cover opacity-35 brightness-90 contrast-125 select-none"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#07090e]/70 via-[#07090e]/40 to-[#07090e]" />
+      </div>
+
+      {/* 3. WebGL Plasma Fluid Background Shader (Optimized for 60fps butter-smooth rendering) */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-25">
         <Plasma
           color="#6366f1"
