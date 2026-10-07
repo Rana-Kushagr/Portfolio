@@ -4,7 +4,7 @@
 > High-performance, tactile web applications crafted with React 19, TypeScript, WebGL shaders, and GSAP motion design.
 
 🌐 **Live Website**: [https://rana-kushagr.github.io/Portfolio/](https://rana-kushagr.github.io/Portfolio/)  
-📦 **Repository**: [https://github.com/Rana-Kushagr/Portfolio](https://github.com/Rana-Kushagr/Portfolio)
+ 
 
 ---
 
