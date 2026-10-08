@@ -4,10 +4,21 @@ import { Compass, Terminal } from 'lucide-react';
 import DecryptedText from './reactbits/DecryptedText';
 
 export const HeroArtwork: React.FC = () => {
+  const [pixelSize, setPixelSize] = React.useState(48);
+
+  React.useEffect(() => {
+    const updateSize = () => {
+      setPixelSize(window.innerWidth < 640 ? 72 : 48);
+    };
+    updateSize();
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
   return (
     <div className="w-full max-w-xl mx-auto">
       <PixelSwap
-        pixelSize={48}
+        pixelSize={pixelSize}
         gap={2}
         pixelRadius={12}
         pixelScale={0.3}

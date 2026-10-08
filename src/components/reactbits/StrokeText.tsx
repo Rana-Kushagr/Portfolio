@@ -213,15 +213,22 @@ export const StrokeText: React.FC<StrokeTextProps> = ({
         );
         observer.observe(root);
 
-        // Replay when user scrolls back to the very top
+        // Replay when user scrolls back to the very top (RAF throttled for mobile 60fps)
         let wasScrolled = false;
+        let scrollTicking = false;
         const handleTopScroll = () => {
-          const y = window.scrollY;
-          if (y > 140) {
-            wasScrolled = true;
-          } else if (y <= 30 && wasScrolled && active) {
-            wasScrolled = false;
-            timeline?.restart();
+          if (!scrollTicking) {
+            scrollTicking = true;
+            window.requestAnimationFrame(() => {
+              const y = window.scrollY;
+              if (y > 140) {
+                wasScrolled = true;
+              } else if (y <= 30 && wasScrolled && active) {
+                wasScrolled = false;
+                timeline?.restart();
+              }
+              scrollTicking = false;
+            });
           }
         };
         window.addEventListener('scroll', handleTopScroll, { passive: true });

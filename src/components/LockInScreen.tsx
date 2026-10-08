@@ -94,7 +94,7 @@ export const LockInScreen: React.FC<LockInScreenProps> = ({ isOpen, onUnlocked }
           }, 450);
         }, 340);
       }
-    }, 24);
+    }, 36);
 
     return () => clearInterval(interval);
   }, [phase, onUnlocked]);
@@ -161,6 +161,7 @@ export const LockInScreen: React.FC<LockInScreenProps> = ({ isOpen, onUnlocked }
               : {}
           }
           transition={{ duration: 0.28 }}
+          style={{ transform: 'translateZ(0)' }}
           className="fixed inset-0 z-50 overflow-hidden select-none"
         >
           {/* Subtle Royal Green Depth behind the shutters when opening */}
@@ -170,6 +171,7 @@ export const LockInScreen: React.FC<LockInScreenProps> = ({ isOpen, onUnlocked }
           <motion.div
             initial={{ y: '-100%' }}
             animate={{ y: getTopShutterY() }}
+            style={{ willChange: 'transform', transform: 'translateZ(0)' }}
             transition={
               phase === 'slamming'
                 ? { duration: 0.35, ease: [0.15, 0.85, 0.2, 1] }
@@ -220,6 +222,7 @@ export const LockInScreen: React.FC<LockInScreenProps> = ({ isOpen, onUnlocked }
           <motion.div
             initial={{ y: '100%' }}
             animate={{ y: getBottomShutterY() }}
+            style={{ willChange: 'transform', transform: 'translateZ(0)' }}
             transition={
               phase === 'slamming'
                 ? { duration: 0.35, ease: [0.15, 0.85, 0.2, 1] }

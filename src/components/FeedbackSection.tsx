@@ -48,12 +48,12 @@ export const FeedbackSection: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, y: 35 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
         className="relative z-10 bg-gradient-to-b from-[#061d14] to-[#04140e] border border-[#d4af37]/25 rounded-3xl p-8 sm:p-12 shadow-2xl backdrop-blur-md overflow-hidden"
       >
         {/* Glow ambient background inside card */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-[#d4af37]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-[radial-gradient(ellipse_at_top,_rgba(212,175,55,0.12)_0%,_transparent_75%)] pointer-events-none" />
 
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#d4af37]/30 bg-[#082419] text-xs font-semibold uppercase tracking-wider text-[#d4af37] mb-6 font-mono">
           <MessageSquare className="w-3.5 h-3.5 text-[#d4af37]" />

@@ -31,6 +31,20 @@ export function App() {
   const [showLockIn, setShowLockIn] = useState(true);
   const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [nameFontSize, setNameFontSize] = useState(86);
+
+  React.useEffect(() => {
+    const updateFontSize = () => {
+      const w = window.innerWidth;
+      if (w < 480) setNameFontSize(42);
+      else if (w < 768) setNameFontSize(56);
+      else if (w < 1024) setNameFontSize(72);
+      else setNameFontSize(86);
+    };
+    updateFontSize();
+    window.addEventListener('resize', updateFontSize);
+    return () => window.removeEventListener('resize', updateFontSize);
+  }, []);
 
   const handleCopyEmail = () => {
     void navigator.clipboard.writeText('kushagrrana7345@gmail.com');
@@ -69,7 +83,7 @@ export function App() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-wrap items-center gap-2.5 mb-8"
           >
@@ -96,9 +110,9 @@ export function App() {
               drawDuration={2.4}
               fillDelay={0.3}
               stagger={0.06}
-              fontSize={86}
+              fontSize={nameFontSize}
               fontWeight={900}
-              letterSpacing={-3}
+              letterSpacing={nameFontSize < 50 ? -1.5 : -3}
               fillMode="fade"
               trigger="scroll"
               active={!showLockIn}
@@ -112,7 +126,7 @@ export function App() {
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.85, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
               className="lg:col-span-7 space-y-5"
             >
@@ -166,7 +180,7 @@ export function App() {
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               className="lg:col-span-5"
             >
@@ -178,7 +192,7 @@ export function App() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-10 border-t border-[#d4af37]/15"
           >
@@ -207,7 +221,7 @@ export function App() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
               className="md:col-span-5 space-y-4"
             >
@@ -227,7 +241,7 @@ export function App() {
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="p-6 rounded-2xl bg-[#061d14] border border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-colors shadow-lg"
               >
@@ -241,7 +255,7 @@ export function App() {
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 className="p-6 rounded-2xl bg-[#061d14] border border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-colors shadow-lg"
               >
@@ -255,7 +269,7 @@ export function App() {
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className="p-6 rounded-2xl bg-[#061d14] border border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-colors shadow-lg"
               >
@@ -269,7 +283,7 @@ export function App() {
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 className="p-6 rounded-2xl bg-[#061d14] border border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-colors shadow-lg"
               >
@@ -288,7 +302,7 @@ export function App() {
           <motion.div
             initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.25 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center text-center mb-12"
           >
@@ -320,7 +334,7 @@ export function App() {
                 key={project.id}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.15 }}
+                viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.85, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
               >
                 <ProjectCard
@@ -337,7 +351,7 @@ export function App() {
           <motion.div
             initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             className="bg-[#061d14] border border-[#d4af37]/25 rounded-3xl p-8 sm:p-12 shadow-2xl"
           >
