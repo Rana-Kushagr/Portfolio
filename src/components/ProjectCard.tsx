@@ -1,8 +1,7 @@
 import React from 'react';
-import { BorderGlow } from './reactbits/BorderGlow';
-import { SpecularButton } from './reactbits/SpecularButton';
 import { ProjectData } from './ProjectModal';
-import { ExternalLink, Sparkles, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Globe, Layers } from 'lucide-react';
+import { GithubIcon } from './icons/GithubIcon';
 
 interface ProjectCardProps {
   project: ProjectData;
@@ -11,109 +10,168 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreview }) => {
   return (
-    <div className="relative group/card h-full flex flex-col">
-      <BorderGlow
-        borderRadius={24}
-        edgeSensitivity={35}
-        glowRadius={45}
-        glowIntensity={1.1}
-        coneSpread={30}
-        colors={['#d4af37', '#e5c361', '#114432']}
-        glowColor="rgba(212, 175, 55, 0.4)"
-        backgroundColor="#061c14"
-        className="h-full flex flex-col p-6 sm:p-7 transition-all duration-300 hover:shadow-2xl hover:shadow-[#d4af37]/10 border border-[#d4af37]/25 hover:border-[#d4af37]/50"
-      >
-        {/* Project Card Content */}
-        <div className="flex flex-col h-full space-y-5">
-          {/* Top Bar with Category & Tagline */}
-          <div className="flex items-center justify-between gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#0a2e20] border border-[#d4af37]/30 text-[#d4af37]">
-              <Sparkles className="w-3 h-3 text-[#d4af37]" />
+    <article className="group/card relative rounded-2xl bg-[#07130e] border border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all duration-300 overflow-hidden shadow-xl flex flex-col">
+      {/* 1. Technical Card Header */}
+      <div className="p-6 sm:p-7 border-b border-[#d4af37]/15 bg-[#04140e]/60">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div className="flex items-center gap-3 font-mono">
+            <span className="text-sm font-bold text-[#d4af37] tracking-wider px-2 py-0.5 rounded bg-[#0a261a] border border-[#d4af37]/30">
+              {project.number || '01'}
+            </span>
+            <span className="text-xs uppercase tracking-widest text-[#a3b8aa]">
               {project.category}
             </span>
-            <span className="text-xs font-mono text-[#a3b8aa]">{project.subtitle}</span>
+          </div>
+          <span className="text-xs font-mono text-[#d4af37]/80">
+            {project.subtitle}
+          </span>
+        </div>
+
+        <div className="space-y-2">
+          <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#fbf8f1] group-hover/card:text-[#d4af37] transition-colors">
+            {project.title}
+          </h3>
+          <p className="text-base text-[#fbf8f1]/80 leading-relaxed font-normal">
+            {project.tagline}
+          </p>
+        </div>
+      </div>
+
+      {/* 2. Realistic Browser Frame (Screenshot Centerpiece) */}
+      <div className="p-4 sm:p-6 bg-[#030e0a]">
+        <div className="rounded-xl overflow-hidden border border-white/10 bg-[#061811] shadow-2xl transition-transform duration-500 group-hover/card:border-[#d4af37]/40">
+          {/* Browser Frame Title Bar */}
+          <div className="flex items-center justify-between px-3.5 py-2.5 bg-[#04140e] border-b border-white/10">
+            {/* Traffic Lights */}
+            <div className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
+            </div>
+
+            {/* Address Bar Pill */}
+            <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-[#071d14] border border-white/10 max-w-[260px] sm:max-w-md w-full justify-center">
+              <Globe className="w-3 h-3 text-[#d4af37]" />
+              <span className="text-xs font-mono text-[#a3b8aa] truncate tracking-tight">
+                {project.displayUrl || 'rana-kushagr.github.io'}
+              </span>
+            </div>
+
+            {/* Inspect Modal Trigger */}
+            <button
+              onClick={() => onPreview(project)}
+              className="text-xs font-mono text-[#a3b8aa] hover:text-[#d4af37] transition-colors flex items-center gap-1 px-2 py-0.5 rounded hover:bg-white/5"
+              title="Inspect specifications"
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Inspect</span>
+            </button>
           </div>
 
-          {/* Project Screenshot Container */}
+          {/* Actual Interface Screenshot */}
           <div
             onClick={() => onPreview(project)}
-            className="cursor-target relative aspect-[16/10] rounded-xl overflow-hidden bg-black/40 border border-[#d4af37]/20 cursor-pointer group/img"
+            className="cursor-target relative aspect-[16/10] overflow-hidden bg-black/60 cursor-pointer group/screenshot"
           >
             <img
               src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
+              alt={`${project.title} live interface`}
+              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover/screenshot:scale-[1.02]"
               loading="lazy"
             />
-            {/* Overlay gradient on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#04140e]/90 via-[#04140e]/30 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-end p-4">
-              <span className="text-xs font-medium text-[#fbf8f1] flex items-center gap-1 bg-[#061d14]/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-[#d4af37]/30">
-                Click to expand preview <ArrowUpRight className="w-3.5 h-3.5 text-[#d4af37]" />
+            {/* Subtle hover prompt */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#04140e]/80 via-transparent to-transparent opacity-0 group-hover/screenshot:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4 pointer-events-none">
+              <span className="text-xs font-mono text-[#fbf8f1] bg-[#04140e]/90 px-3 py-1.5 rounded-lg border border-[#d4af37]/30 flex items-center gap-1.5 backdrop-blur-md">
+                Click to expand specs & deep dive
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#d4af37]" />
               </span>
             </div>
-          </div>
-
-          {/* Titles & Description */}
-          <div className="space-y-2 flex-grow">
-            <h3 className="text-xl sm:text-2xl font-bold text-[#fbf8f1] tracking-tight group-hover/card:text-[#d4af37] transition-colors">
-              {project.title}
-            </h3>
-            <p className="text-sm font-medium text-[#d1c7a7] line-clamp-1">
-              {project.tagline}
-            </p>
-            <p className="text-xs sm:text-sm text-[#a3b8aa] leading-relaxed line-clamp-3">
-              {project.summary}
-            </p>
-          </div>
-
-          {/* Tech Badges */}
-          <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[#d4af37]/15">
-            {project.techStack.slice(0, 4).map((tech, i) => (
-              <span
-                key={i}
-                className="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-[#082419] text-[#d4af37] border border-[#d4af37]/25"
-              >
-                {tech}
-              </span>
-            ))}
-            {project.techStack.length > 4 && (
-              <span className="px-2 py-0.5 rounded-md text-[11px] font-mono text-[#789382]">
-                +{project.techStack.length - 4} more
-              </span>
-            )}
-          </div>
-
-          {/* Action Row */}
-          <div className="pt-2 flex items-center justify-between gap-3 mt-auto">
-            <div className="w-full sm:w-auto">
-              <SpecularButton
-                onClick={() => onPreview(project)}
-                size="md"
-                textColor="#fbf8f1"
-                lineColor="#d4af37"
-                baseColor="#0a2a1e"
-                className="cursor-target w-full sm:w-auto font-semibold border border-[#d4af37]/30"
-              >
-                Preview System
-              </SpecularButton>
-            </div>
-
-            {project.demoUrl && (
-              <a
-                href={project.demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cursor-target p-2.5 rounded-xl border border-[#d4af37]/30 bg-[#082419] hover:bg-[#0c3324] text-[#d4af37] hover:text-[#fbf8f1] transition-colors"
-                title="Launch Live System"
-                aria-label="Launch Live System"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            )}
           </div>
         </div>
-      </BorderGlow>
-    </div>
+      </div>
+
+      {/* 3. Engineering Spec Table (Notebook / Workshop Format) */}
+      <div className="p-6 sm:p-7 space-y-4 flex-grow bg-[#051610]/70 border-t border-[#d4af37]/10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs font-mono">
+          {/* ROLE */}
+          <div className="p-3 rounded-lg bg-[#04140e] border border-white/5 space-y-1">
+            <span className="text-[#d4af37] block font-semibold uppercase tracking-wider">
+              ROLE
+            </span>
+            <span className="text-[#fbf8f1]/90 block">
+              {project.role || 'Solo Frontend Builder'}
+            </span>
+          </div>
+
+          {/* STACK */}
+          <div className="p-3 rounded-lg bg-[#04140e] border border-white/5 space-y-1">
+            <span className="text-[#d4af37] block font-semibold uppercase tracking-wider">
+              STACK
+            </span>
+            <span className="text-[#fbf8f1]/90 block truncate" title={project.stackSummary}>
+              {project.stackSummary || project.techStack.slice(0, 3).join(' · ')}
+            </span>
+          </div>
+
+          {/* FOCUS */}
+          <div className="p-3 rounded-lg bg-[#04140e] border border-white/5 space-y-1">
+            <span className="text-[#d4af37] block font-semibold uppercase tracking-wider">
+              FOCUS
+            </span>
+            <span className="text-[#fbf8f1]/90 block truncate" title={project.focusSummary}>
+              {project.focusSummary || 'Responsive UI & UX'}
+            </span>
+          </div>
+        </div>
+
+        {/* Tags pills */}
+        <div className="flex flex-wrap gap-1.5 pt-1">
+          {project.tags.map((tag, idx) => (
+            <span
+              key={idx}
+              className="px-2.5 py-1 text-[11px] font-mono rounded bg-[#082015] text-[#a3b8aa] border border-white/5"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* 4. Action Footer */}
+      <div className="p-5 sm:p-6 bg-[#04140e] border-t border-[#d4af37]/15 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          {project.demoUrl && (
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-target inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#d4af37] hover:bg-[#e5c361] text-[#04140e] font-bold text-xs tracking-wider uppercase transition-all shadow-[0_2px_12px_rgba(212,175,55,0.25)] hover:shadow-[0_2px_18px_rgba(212,175,55,0.4)]"
+            >
+              <span>View live →</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          )}
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-target inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-[#082419] hover:bg-[#0c3927] text-[#fbf8f1] border border-[#d4af37]/25 text-xs font-mono transition-colors"
+            >
+              <GithubIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+              <span>View code →</span>
+            </a>
+          )}
+        </div>
+
+        <button
+          onClick={() => onPreview(project)}
+          className="cursor-target text-xs font-mono text-[#a3b8aa] hover:text-[#d4af37] transition-colors underline underline-offset-4"
+        >
+          Detailed specs & notes ↘
+        </button>
+      </div>
+    </article>
   );
 };
 

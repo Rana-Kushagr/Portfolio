@@ -2,102 +2,113 @@ import { ProjectData } from '../components/ProjectModal';
 
 export const PROJECTS: ProjectData[] = [
   {
+    id: 'focus-flow',
+    number: '01',
+    title: 'FocusFlow',
+    subtitle: 'Productivity • Intentional Flow • Student Tools',
+    tagline: 'A focused study environment built around intentional digital workflows.',
+    category: 'PRODUCTIVITY / FRONTEND',
+    image: './assets/focus-flow.png',
+    themeColor: '#10b981',
+    borderColor: '#059669',
+    glowColor: '160 84 60',
+    displayUrl: 'rana-kushagr.github.io/Focus-Flow',
+    role: 'Solo Frontend Developer & Vibecoder',
+    stackSummary: 'HTML · CSS · JavaScript · GitHub Pages',
+    focusSummary: 'Productivity UX · Responsive UI · Interaction Design',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Productivity UX', 'LocalStorage Engine'],
+    summary:
+      'A distraction-free, privacy-conscious study environment designed to protect attention. Built from the ground up for focused study blocks with custom interval timers, ambient audio generators, task sprint logging, and zero tracking cookies.',
+    features: [
+      'Intentional Interval Pacing: Flexible study timers (25m / 50m deep focus, 5m / 15m restoration) with audio chimes.',
+      'Offline-First Local Storage: All task queues, session logs, and streak counts persist in browser memory without accounts or trackers.',
+      'Ambient Focus Audio: Integrated white noise, mechanical ticking, and gentle rain soundscapes to mask environmental distraction.',
+      'Keyboard Shortcuts & Fast Triage: Rapid keyboard controls for pause, resume, and task switching without breaking focus.'
+    ],
+    techStack: [
+      'HTML5',
+      'CSS3 / Modern Layouts',
+      'Vanilla JavaScript',
+      'Web Audio API',
+      'LocalStorage API',
+      'GitHub Pages'
+    ],
+    impact:
+      'Created to solve my own struggle with distraction while studying for Class 10 exams. Simple, fast, and loads under 200ms.',
+    demoUrl: 'https://rana-kushagr.github.io/Focus-Flow/',
+    githubUrl: 'https://github.com/Rana-Kushagr/Focus-Flow'
+  },
+  {
+    id: 'raksha-setu',
+    number: '02',
+    title: 'RakshaSetu',
+    subtitle: 'Emergency Response • Offline PWA • Indian Context',
+    tagline: 'An offline-first emergency first-aid coach engineered for critical golden-hour medical triage.',
+    category: 'PUBLIC HEALTH / OFFLINE PWA',
+    image: './assets/raksha-setu.png',
+    themeColor: '#ef4444',
+    borderColor: '#dc2626',
+    glowColor: '15 90 60',
+    displayUrl: 'rana-kushagr.github.io/Raksha-Setu',
+    role: 'Solo Frontend Developer',
+    stackSummary: 'React · TypeScript · PWA · Web Speech API',
+    focusSummary: 'Offline Resilience · Panic-Proof UI · Voice Cadence',
+    tags: ['React 19', 'TypeScript', 'Offline PWA', 'Voice Coach', 'SOS 112 Protocol'],
+    summary:
+      'A zero-latency, offline-capable Progressive Web App engineered to guide untrained bystanders through critical medical emergencies before first responders arrive. Designed with panic-proof typography, massive tap targets, and bilingual voice-guided coaching.',
+    features: [
+      '100% Offline PWA Resilience: Fully cached via Service Workers to run reliably with zero cellular connectivity in basement parking or remote transit.',
+      'Voice-Guided CPR Rhythm: Real-time audio cadence providing 100-120 BPM auditory compression beats and breathing cues.',
+      'One-Tap 112 SOS Triage: Direct emergency service dialer mapped to Indian national emergency dispatch lines.',
+      'Fast Visual Decision Trees: Clear, illustrated bystander guides for cardiac arrest, severe bleeding, choking, snakebites, and burns.'
+    ],
+    techStack: [
+      'React 19',
+      'TypeScript',
+      'Tailwind CSS',
+      'Progressive Web App (PWA)',
+      'Web Speech API',
+      'AudioContext API'
+    ],
+    impact:
+      'Built around real civic needs in India, prioritizing extreme visual clarity and rapid guidance when every 10 seconds count.',
+    demoUrl: 'https://rana-kushagr.github.io/Raksha-Setu/',
+    githubUrl: 'https://github.com/Rana-Kushagr/Raksha-Setu'
+  },
+  {
     id: 'ahaar-amrit',
-    title: 'Ahaar Amrit | आहार अमृत',
-    subtitle: 'Wellness • Nutrition • Heritage',
-    tagline: 'Ancient Ayurvedic Wisdom meets Modern Precision Nutrition',
-    category: 'Ayurvedic Healthtech',
+    number: '03',
+    title: 'Ahaar Amrit',
+    subtitle: 'Wellness • Nutrition • Tridosha Analysis',
+    tagline: 'Personalized Satvik nutrition and Tridosha constitution assessment bringing classical Ayurvedic wisdom to modern interfaces.',
+    category: 'WELLNESS / HEALTHTECH',
     image: './assets/ahaar-amrit.png',
     themeColor: '#10b981',
     borderColor: '#059669',
     glowColor: '160 84 60',
+    displayUrl: 'ahaar-amrit.lovable.app',
+    role: 'Frontend & Product Design',
+    stackSummary: 'React · Tailwind CSS · TypeScript · Lovable',
+    focusSummary: 'Health Diagnostics · Clean Architecture · Interactive UX',
     tags: ['React 19', 'TypeScript', 'Tailwind CSS', 'Ayurveda Engine', 'Tridosha Analysis'],
     summary:
-      'A holistic wellness web application rooted in classical Ayurvedic traditions. Ahaar Amrit calculates personal Prakriti & Vikriti (Tridosha profile: Vata, Pitta, Kapha) and curates personalized daily Satvik nutrition plans, seasonal ritucharya remedies, and an interactive recipe studio.',
+      'A holistic wellness platform that calculates personal Prakriti & Vikriti (Vata, Pitta, Kapha) and curates personalized daily Satvik nutrition plans, seasonal ritucharya remedies, and an interactive recipe catalog.',
     features: [
-      'Personalized Tridosha Assessment: Algorithmic constitution diagnosis based on lifestyle and physiological traits.',
-      'M.A.A. (Motherly Ayurvedic Assistant): Interactive conversational guide for home remedies and digestive agni restoration.',
-      'Seasonal Ritucharya Diets: Context-aware food recommendations synchronized with Indian climates and lunar seasons.',
-      'Satvik Recipe Studio: Step-by-step nutrient-rich traditional recipes categorized by dosha pacification.',
-      'Prana & Ojas Vitality Tracker: Daily habit journaling for mindfulness, hydration, and sleep harmony.'
+      'Interactive Tridosha Assessment: Diagnostic questionnaire translating lifestyle and metabolic traits into constitution breakdowns.',
+      'Ritucharya Seasonal Recommendations: Contextual food recommendations synchronized with Indian climates and seasonal transitions.',
+      'Satvik Recipe Studio: Step-by-step nutrient-rich traditional recipes categorized by dosha pacification and digestive agni.',
+      'Clean Modular UI: Built with responsive component architecture and fluid micro-interactions.'
     ],
     techStack: [
       'React 19',
       'TypeScript',
       'Tailwind CSS v3',
       'Framer Motion',
-      'Lucide React',
-      'Client State Cache'
+      'Lucide React'
     ],
     impact:
-      'Bridging timeless Vedic nutritional wisdom with clean modern UI/UX for urban youth and families seeking natural, restorative living.',
+      'Translating deep traditional Indian health sciences into an intuitive digital experience for students and families.',
     demoUrl: 'https://ahaar-amrit.lovable.app',
     githubUrl: 'https://github.com/Rana-Kushagr'
-  },
-  {
-    id: 'raksha-setu',
-    title: 'RakshaSetu | रक्षासेतु',
-    subtitle: 'Emergency Care • Offline PWA • Lifesaving',
-    tagline: 'India’s Panic-Proof Emergency First-Aid Guide',
-    category: 'Public Health & Emergency Response',
-    image: './assets/raksha-setu.png',
-    themeColor: '#ef4444',
-    borderColor: '#dc2626',
-    glowColor: '15 90 60',
-    tags: ['React', 'Offline PWA', 'Voice Coach', 'SOS 112 Triage', 'Lifesaving Protocol'],
-    summary:
-      'A zero-latency, offline-first Progressive Web App engineered to guide bystanders through critical golden-hour medical emergencies. Designed with panic-proof typography, high-contrast visual cueing, and bilingual voice-guided coaching.',
-    features: [
-      '100% Offline Resilience: Operates completely without cellular or internet connectivity via aggressive service-worker caching.',
-      'Voice-Guided First-Aid Coach: Real-time rhythmic audio cadence for CPR compressions (100-120 bpm) and rescue breaths.',
-      'One-Tap 112 SOS Triage: Direct emergency dispatch integration formatted for Indian national emergency services.',
-      'Bystander Emergency Catalog: Fast visual decision trees for cardiac arrest, severe bleeding, choking, burns, and snakebites.',
-      'High-Contrast Panic Mode: Large touch targets, vibration feedback, and simplified screens readable in extreme distress.'
-    ],
-    techStack: [
-      'React 19',
-      'TypeScript',
-      'Progressive Web App (PWA)',
-      'Web Speech API',
-      'AudioContext API',
-      'Tailwind CSS'
-    ],
-    impact:
-      'Empowers everyday citizens across India to act with precision during the critical 10 minutes of medical emergencies before ambulances arrive.',
-    demoUrl: 'https://rana-kushagr.github.io/Raksha-Setu/',
-    githubUrl: 'https://github.com/Rana-Kushagr/Raksha-Setu'
-  },
-  {
-    id: 'focus-flow',
-    title: 'FocusFlow',
-    subtitle: 'Productivity • Deep Work • Minimalist',
-    tagline: 'Pure Cognitive Flow with Intelligent Interval Pacing',
-    category: 'Productivity & Study Workspace',
-    image: './assets/focus-flow.png',
-    themeColor: '#6366f1',
-    borderColor: '#4f46e5',
-    glowColor: '235 85 65',
-    tags: ['React 19', 'TypeScript', 'Tailwind CSS', 'Pomodoro Engine', 'Local Storage Telemetry'],
-    summary:
-      'A distraction-free, privacy-conscious productivity suite built for deep work sessions and high-intensity study blocks. Features flexible focus pacing, ambient study soundscapes, task sprint tracking, and local telemetry storage.',
-    features: [
-      'Triple Interval Timer: Seamless switching between Deep Focus (25m/50m), Short Break (5m), and Long Break (15m).',
-      'Task Sprint Management: Inline priority tagging, completed streak counts, and backlog tracking.',
-      '100% Client-Side Privacy: All telemetry, streaks, and session histories persist in encrypted browser storage without telemetry trackers.',
-      'Ambient Sound Generation: Built-in focus noise generators (soft white noise, ticking clock, rain ambience) to shield distraction.',
-      'Visual Flow Feedback: Dynamic title bar countdown, audio gong chimes, and smooth radial time progress.'
-    ],
-    techStack: [
-      'React 19',
-      'TypeScript',
-      'Tailwind CSS',
-      'Lucide React',
-      'LocalStorage Engine',
-      'Vite 6'
-    ],
-    impact:
-      'Created to help students and developers eliminate cognitive context switching and sustain effortless deep-work momentum.',
-    demoUrl: 'https://rana-kushagr.github.io/Focus-Flow/',
-    githubUrl: 'https://github.com/Rana-Kushagr/Focus-Flow'
   }
 ];

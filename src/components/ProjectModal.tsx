@@ -5,6 +5,7 @@ import { GithubIcon } from './icons/GithubIcon';
 
 export interface ProjectData {
   id: string;
+  number?: string;
   title: string;
   subtitle: string;
   tagline: string;
@@ -18,6 +19,10 @@ export interface ProjectData {
   features: string[];
   techStack: string[];
   impact: string;
+  role?: string;
+  stackSummary?: string;
+  focusSummary?: string;
+  displayUrl?: string;
   demoUrl?: string;
   githubUrl?: string;
 }
