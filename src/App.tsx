@@ -13,6 +13,9 @@ import { ShinyText } from './components/reactbits/ShinyText';
 import TargetCursor from './components/reactbits/TargetCursor';
 import { PROJECTS } from './data/projects';
 import { GithubIcon } from './components/icons/GithubIcon';
+import { InstagramIcon } from './components/icons/InstagramIcon';
+import { TelegramIcon } from './components/icons/TelegramIcon';
+import { DiscordIcon } from './components/icons/DiscordIcon';
 import {
   Compass,
   Terminal,
@@ -173,6 +176,41 @@ export function App() {
                   {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-[#d4af37]" />}
                   <span>{copiedEmail ? 'Email Copied!' : 'Copy Email'}</span>
                 </button>
+              </div>
+
+              {/* Direct Social Channels Row */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <span className="text-[11px] font-mono text-[#789382] uppercase tracking-wider">Direct:</span>
+                <a
+                  href="https://www.instagram.com/_ranakushagr?obrf=MXMwZ2J4MWlheDZkZw=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-target inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono text-[#a3b8aa] hover:text-[#d4af37] bg-[#061d14] hover:bg-[#082419] border border-[#d4af37]/20 transition-colors"
+                  aria-label="Instagram Profile"
+                >
+                  <InstagramIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <span>Instagram</span>
+                </a>
+                <a
+                  href="https://t.me/Kushagr_Rana"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-target inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono text-[#a3b8aa] hover:text-[#d4af37] bg-[#061d14] hover:bg-[#082419] border border-[#d4af37]/20 transition-colors"
+                  aria-label="Telegram Channel"
+                >
+                  <TelegramIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <span>Telegram</span>
+                </a>
+                <a
+                  href="https://discord.gg/6ph3WymB"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-target inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono text-[#a3b8aa] hover:text-[#d4af37] bg-[#061d14] hover:bg-[#082419] border border-[#d4af37]/20 transition-colors"
+                  aria-label="Discord Server"
+                >
+                  <DiscordIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <span>Discord</span>
+                </a>
               </div>
             </motion.div>
 
@@ -437,10 +475,10 @@ export function App() {
             </div>
 
             {/* Contact Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
               <a
                 href="mailto:kushagrrana7345@gmail.com"
-                className="cursor-target inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#e5c361] to-[#c29c2d] hover:brightness-105 text-[#04140e] text-xs font-bold transition-all shadow-md shadow-[#d4af37]/15"
+                className="cursor-target inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#e5c361] to-[#c29c2d] hover:brightness-105 text-[#04140e] text-xs font-bold transition-all shadow-md shadow-[#d4af37]/15"
               >
                 <Mail className="w-3.5 h-3.5 text-[#04140e]" />
                 <span>kushagrrana7345@gmail.com</span>
@@ -449,10 +487,41 @@ export function App() {
                 href="https://github.com/rana-kushagr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cursor-target inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#082419] hover:bg-[#0c3324] text-[#fbf8f1] text-xs font-semibold border border-[#d4af37]/25 transition-colors"
+                className="cursor-target inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#082419] hover:bg-[#0c3324] text-[#fbf8f1] text-xs font-semibold border border-[#d4af37]/25 transition-colors"
+                aria-label="GitHub Profile"
               >
                 <GithubIcon className="w-3.5 h-3.5 text-[#d4af37]" />
                 <span>GitHub</span>
+              </a>
+              <a
+                href="https://www.instagram.com/_ranakushagr?obrf=MXMwZ2J4MWlheDZkZw=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-target inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#082419] hover:bg-[#0c3324] text-[#fbf8f1] text-xs font-semibold border border-[#d4af37]/25 transition-colors"
+                aria-label="Instagram Profile"
+              >
+                <InstagramIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                <span>Instagram</span>
+              </a>
+              <a
+                href="https://t.me/Kushagr_Rana"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-target inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#082419] hover:bg-[#0c3324] text-[#fbf8f1] text-xs font-semibold border border-[#d4af37]/25 transition-colors"
+                aria-label="Telegram"
+              >
+                <TelegramIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                <span>Telegram</span>
+              </a>
+              <a
+                href="https://discord.gg/6ph3WymB"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-target inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#082419] hover:bg-[#0c3324] text-[#fbf8f1] text-xs font-semibold border border-[#d4af37]/25 transition-colors"
+                aria-label="Discord"
+              >
+                <DiscordIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                <span>Discord</span>
               </a>
             </div>
           </div>

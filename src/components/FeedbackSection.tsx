@@ -3,6 +3,10 @@ import confetti from 'canvas-confetti';
 import DodgeField from './reactbits/DodgeField';
 import { Heart, ThumbsUp, Sparkles, MessageSquare, Send, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { GithubIcon } from './icons/GithubIcon';
+import { InstagramIcon } from './icons/InstagramIcon';
+import { TelegramIcon } from './icons/TelegramIcon';
+import { DiscordIcon } from './icons/DiscordIcon';
 
 export const FeedbackSection: React.FC = () => {
   const [hasLiked, setHasLiked] = useState(false);
@@ -126,21 +130,53 @@ export const FeedbackSection: React.FC = () => {
               <p className="text-[#a3b8aa] text-xs sm:text-sm leading-relaxed mb-4">
                 As a 16-year-old student builder in India, creating meaningful digital experiences with high craft is my obsession. Let’s collaborate or discuss opportunities!
               </p>
-              <div className="flex flex-wrap items-center justify-center gap-3">
+              <div className="flex flex-wrap items-center justify-center gap-2">
                 <button
                   onClick={handleCopyEmail}
-                  className="cursor-target inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0a2e20] hover:bg-[#0d3b29] text-[#fbf8f1] font-mono text-xs font-semibold border border-[#d4af37]/25 transition-colors"
+                  className="cursor-target inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0a2e20] hover:bg-[#0d3b29] text-[#fbf8f1] font-mono text-xs font-semibold border border-[#d4af37]/25 transition-colors"
                 >
                   {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Send className="w-3.5 h-3.5 text-[#d4af37]" />}
-                  <span>{copiedEmail ? 'Email Copied!' : 'Copy Kushagr’s Email'}</span>
+                  <span>{copiedEmail ? 'Copied!' : 'Email'}</span>
                 </button>
                 <a
                   href="https://github.com/rana-kushagr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="cursor-target px-4 py-2 rounded-xl bg-[#0a2e20] hover:bg-[#0d3b29] text-[#fbf8f1] font-mono text-xs font-semibold border border-[#d4af37]/25 transition-colors"
+                  className="cursor-target inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0a2e20] hover:bg-[#0d3b29] text-[#fbf8f1] font-mono text-xs font-semibold border border-[#d4af37]/25 transition-colors"
+                  aria-label="GitHub Profile"
                 >
-                  GitHub Profile →
+                  <GithubIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <span>GitHub</span>
+                </a>
+                <a
+                  href="https://www.instagram.com/_ranakushagr?obrf=MXMwZ2J4MWlheDZkZw=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-target inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0a2e20] hover:bg-[#0d3b29] text-[#fbf8f1] font-mono text-xs font-semibold border border-[#d4af37]/25 transition-colors"
+                  aria-label="Instagram Profile"
+                >
+                  <InstagramIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <span>Instagram</span>
+                </a>
+                <a
+                  href="https://t.me/Kushagr_Rana"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-target inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0a2e20] hover:bg-[#0d3b29] text-[#fbf8f1] font-mono text-xs font-semibold border border-[#d4af37]/25 transition-colors"
+                  aria-label="Telegram"
+                >
+                  <TelegramIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <span>Telegram</span>
+                </a>
+                <a
+                  href="https://discord.gg/6ph3WymB"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cursor-target inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0a2e20] hover:bg-[#0d3b29] text-[#fbf8f1] font-mono text-xs font-semibold border border-[#d4af37]/25 transition-colors"
+                  aria-label="Discord"
+                >
+                  <DiscordIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                  <span>Discord</span>
                 </a>
               </div>
             </motion.div>
@@ -149,7 +185,7 @@ export const FeedbackSection: React.FC = () => {
 
         {relented && !hasLiked && (
           <div className="mt-4 text-xs text-[#789382] font-mono">
-            You chased it down! If you have constructive feedback or feature ideas, connect on GitHub or email!
+            You chased it down! If you have constructive feedback or feature ideas, connect on GitHub, Telegram, Discord, or Instagram!
           </div>
         )}
       </motion.div>

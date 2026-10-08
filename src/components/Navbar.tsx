@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Target, Mail, Menu, X } from 'lucide-react';
 import { GithubIcon } from './icons/GithubIcon';
+import { InstagramIcon } from './icons/InstagramIcon';
+import { TelegramIcon } from './icons/TelegramIcon';
+import { DiscordIcon } from './icons/DiscordIcon';
 
 interface NavbarProps {
   onReopenLockIn: () => void;
@@ -139,16 +142,49 @@ export const Navbar: React.FC<NavbarProps> = ({ onReopenLockIn }) => {
             <span>Lock-In</span>
           </button>
 
-          {/* GitHub Link */}
-          <a
-            href="https://github.com/rana-kushagr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cursor-target p-2 rounded-xl text-[#a3b8aa] hover:text-[#fbf8f1] hover:bg-[#082419] transition-colors border border-transparent hover:border-[#d4af37]/20"
-            aria-label="GitHub Profile"
-          >
-            <GithubIcon className="w-4 h-4" />
-          </a>
+          {/* Social Icons (GitHub, Insta, TG, Discord) */}
+          <div className="hidden sm:flex items-center gap-1">
+            <a
+              href="https://github.com/rana-kushagr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-target p-2 rounded-xl text-[#a3b8aa] hover:text-[#fbf8f1] hover:bg-[#082419] transition-colors border border-transparent hover:border-[#d4af37]/20"
+              aria-label="GitHub Profile"
+              title="GitHub Profile"
+            >
+              <GithubIcon className="w-4 h-4" />
+            </a>
+            <a
+              href="https://www.instagram.com/_ranakushagr?obrf=MXMwZ2J4MWlheDZkZw=="
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-target p-2 rounded-xl text-[#a3b8aa] hover:text-[#fbf8f1] hover:bg-[#082419] transition-colors border border-transparent hover:border-[#d4af37]/20"
+              aria-label="Instagram Profile"
+              title="Instagram Profile"
+            >
+              <InstagramIcon className="w-4 h-4" />
+            </a>
+            <a
+              href="https://t.me/Kushagr_Rana"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-target p-2 rounded-xl text-[#a3b8aa] hover:text-[#fbf8f1] hover:bg-[#082419] transition-colors border border-transparent hover:border-[#d4af37]/20"
+              aria-label="Telegram"
+              title="Telegram Channel"
+            >
+              <TelegramIcon className="w-4 h-4" />
+            </a>
+            <a
+              href="https://discord.gg/6ph3WymB"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-target p-2 rounded-xl text-[#a3b8aa] hover:text-[#fbf8f1] hover:bg-[#082419] transition-colors border border-transparent hover:border-[#d4af37]/20"
+              aria-label="Discord Server"
+              title="Discord Server"
+            >
+              <DiscordIcon className="w-4 h-4" />
+            </a>
+          </div>
 
           {/* Contact / Email CTA */}
           <a
@@ -204,6 +240,47 @@ export const Navbar: React.FC<NavbarProps> = ({ onReopenLockIn }) => {
             >
               Contact
             </button>
+
+            {/* Quick Social Buttons in Mobile Drawer */}
+            <div className="pt-2 grid grid-cols-4 gap-1.5 border-t border-[#d4af37]/15">
+              <a
+                href="https://github.com/rana-kushagr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-target p-2 rounded-xl text-[#a3b8aa] hover:text-[#fbf8f1] bg-[#082419] border border-[#d4af37]/20 flex flex-col items-center justify-center gap-1 text-[10px] font-mono"
+              >
+                <GithubIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                <span>GitHub</span>
+              </a>
+              <a
+                href="https://www.instagram.com/_ranakushagr?obrf=MXMwZ2J4MWlheDZkZw=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-target p-2 rounded-xl text-[#a3b8aa] hover:text-[#fbf8f1] bg-[#082419] border border-[#d4af37]/20 flex flex-col items-center justify-center gap-1 text-[10px] font-mono"
+              >
+                <InstagramIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                <span>Insta</span>
+              </a>
+              <a
+                href="https://t.me/Kushagr_Rana"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-target p-2 rounded-xl text-[#a3b8aa] hover:text-[#fbf8f1] bg-[#082419] border border-[#d4af37]/20 flex flex-col items-center justify-center gap-1 text-[10px] font-mono"
+              >
+                <TelegramIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                <span>Telegram</span>
+              </a>
+              <a
+                href="https://discord.gg/6ph3WymB"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-target p-2 rounded-xl text-[#a3b8aa] hover:text-[#fbf8f1] bg-[#082419] border border-[#d4af37]/20 flex flex-col items-center justify-center gap-1 text-[10px] font-mono"
+              >
+                <DiscordIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                <span>Discord</span>
+              </a>
+            </div>
+
             <div className="pt-2 border-t border-[#d4af37]/15 flex items-center justify-between">
               <button
                 onClick={() => {
