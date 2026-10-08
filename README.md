@@ -54,14 +54,16 @@ The site is designed with a regal Imperial Gold (`#d4af37`) and Royal Dark Green
 
 ## 🎨 Interactive Motion & Engineering
 
-1. **`<LockInScreen />`**: System lock-in preloader and target calibration screen with live Meerut coordinates (`28.9845° N · 77.7064° E`) and real-time IST clock.
-2. **`<TargetCursor />`**: Magnetic GSAP targeting cursor with golden corner reticles locking onto `.cursor-target` elements.
-3. **`<PixelSwap />`**: Centerpiece interactive element that pixel-swaps between the Royal KR Monogram Crest and the 3-system engineering schematic.
-4. **`<StrokeText />`**: SVG outline drawing and fill sequence for Kushagr's name in Imperial Gold and Ivory.
-5. **`<BlurText />`**: Cascading blur-to-sharp entrance animation for the *"My Works as solo developer"* showcase header.
-6. **`<BorderGlow />`**: Proximity-reactive gold mesh gradient and conic glow borders around each project card.
-7. **`<SpecularButton />`**: 3D rim-illuminated interactive *"Preview System"* buttons.
-8. **`<DodgeField />`**: Playful evasive *"No"* button in the feedback section.
+1. **`<ElectricBorder />`**: Real-time canvas animated electric lightning border wrapping each project card and hero artwork in its distinct theme color (Coral Red, Emerald, and Cyan).
+2. **`<ShinyText />`**: Sweeping metallic light sheen animating across the hero tagline.
+3. **`<DecryptedText />`**: Cyber-style character decryption cycling and locking onto Kushagr's name.
+4. **`<LockInScreen />`**: System lock-in preloader and target calibration screen with live Meerut coordinates (`28.9845° N · 77.7064° E`) and real-time IST clock.
+5. **`<TargetCursor />`**: Magnetic GSAP targeting cursor with cyan reticles locking onto `.cursor-target` elements.
+6. **`<PixelSwap />`**: Centerpiece interactive element that pixel-swaps between the KR Monogram Crest and the 3-system engineering schematic.
+7. **`<StrokeText />`**: SVG outline drawing and fill sequence for Kushagr's name.
+8. **`<BlurText />`**: Cascading blur-to-sharp entrance animation for the *"My Works as solo developer"* showcase header.
+9. **`<SpecularButton />`**: 3D rim-illuminated interactive *"Preview System"* buttons.
+10. **`<DodgeField />`**: Playful evasive *"No"* button in the feedback section.
 
 ---
 

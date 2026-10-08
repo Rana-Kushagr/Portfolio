@@ -1,5 +1,5 @@
 import React from 'react';
-import { BorderGlow } from './reactbits/BorderGlow';
+import { ElectricBorder } from './reactbits/ElectricBorder';
 import { SpecularButton } from './reactbits/SpecularButton';
 import { ProjectData } from './ProjectModal';
 import { ExternalLink, Sparkles, ArrowUpRight } from 'lucide-react';
@@ -12,8 +12,7 @@ interface ProjectCardProps {
 const PROJECT_THEMES: Record<
   string,
   {
-    glowColors: string[];
-    glowColor: string;
+    electricColor: string;
     bgCard: string;
     badgeClass: string;
     techBadgeClass: string;
@@ -24,9 +23,8 @@ const PROJECT_THEMES: Record<
   }
 > = {
   'raksha-setu': {
-    glowColors: ['#f43f5e', '#fb7185', '#f97316'],
-    glowColor: 'rgba(244, 63, 94, 0.45)',
-    bgCard: '#120d14',
+    electricColor: '#f43f5e',
+    bgCard: '#120d16',
     badgeClass: 'bg-rose-500/10 border-rose-500/30 text-rose-300',
     techBadgeClass: 'bg-rose-950/40 text-rose-300 border-rose-500/25',
     buttonLine: '#fb7185',
@@ -35,8 +33,7 @@ const PROJECT_THEMES: Record<
     iconColor: 'text-rose-400'
   },
   'ahaar-amrit': {
-    glowColors: ['#10b981', '#34d399', '#f59e0b'],
-    glowColor: 'rgba(16, 185, 129, 0.45)',
+    electricColor: '#10b981',
     bgCard: '#081410',
     badgeClass: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300',
     techBadgeClass: 'bg-emerald-950/40 text-emerald-300 border-emerald-500/25',
@@ -46,9 +43,8 @@ const PROJECT_THEMES: Record<
     iconColor: 'text-emerald-400'
   },
   'focus-flow': {
-    glowColors: ['#6366f1', '#06b6d4', '#8b5cf6'],
-    glowColor: 'rgba(99, 102, 241, 0.45)',
-    bgCard: '#0a0d1c',
+    electricColor: '#38bdf8',
+    bgCard: '#0a0d1e',
     badgeClass: 'bg-sky-500/10 border-sky-500/30 text-sky-300',
     techBadgeClass: 'bg-indigo-950/40 text-indigo-300 border-indigo-500/25',
     buttonLine: '#38bdf8',
@@ -59,9 +55,8 @@ const PROJECT_THEMES: Record<
 };
 
 const DEFAULT_THEME = {
-  glowColors: ['#38bdf8', '#818cf8', '#fb7185'],
-  glowColor: 'rgba(56, 189, 248, 0.45)',
-  bgCard: '#0c0f18',
+  electricColor: '#38bdf8',
+  bgCard: '#0c0f1a',
   badgeClass: 'bg-sky-500/10 border-sky-500/30 text-sky-300',
   techBadgeClass: 'bg-slate-800/60 text-slate-200 border-white/10',
   buttonLine: '#38bdf8',
@@ -75,21 +70,19 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreview }) 
 
   return (
     <div className="relative group/card h-full flex flex-col">
-      <BorderGlow
+      <ElectricBorder
+        color={theme.electricColor}
+        speed={1.1}
+        chaos={0.14}
         borderRadius={24}
-        edgeSensitivity={35}
-        glowRadius={45}
-        glowIntensity={1.15}
-        coneSpread={30}
-        colors={theme.glowColors}
-        glowColor={theme.glowColor}
-        backgroundColor={theme.bgCard}
-        className="h-full flex flex-col p-6 sm:p-7 transition-all duration-300 hover:shadow-2xl hover:shadow-black/60 border border-white/10 hover:border-white/20"
+        className="h-full transition-transform duration-300 group-hover/card:-translate-y-1.5"
       >
-        {/* Project Card Content */}
-        <div className="flex flex-col h-full space-y-5">
+        <div
+          className="h-full flex flex-col p-6 sm:p-7 rounded-[24px] border border-white/10 shadow-2xl backdrop-blur-xl transition-colors duration-300"
+          style={{ backgroundColor: theme.bgCard }}
+        >
           {/* Top Bar with Category & Tagline */}
-          <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center justify-between gap-2 mb-5">
             <span
               className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider border ${theme.badgeClass}`}
             >
@@ -102,7 +95,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreview }) 
           {/* Project Screenshot Container */}
           <div
             onClick={() => onPreview(project)}
-            className="cursor-target relative aspect-[16/10] rounded-xl overflow-hidden bg-black/60 border border-white/10 cursor-pointer group/img"
+            className="cursor-target relative aspect-[16/10] rounded-xl overflow-hidden bg-black/60 border border-white/10 cursor-pointer group/img mb-5"
           >
             <img
               src={project.image}
@@ -119,7 +112,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreview }) 
           </div>
 
           {/* Titles & Description */}
-          <div className="space-y-2 flex-grow">
+          <div className="space-y-2 flex-grow mb-5">
             <h3
               className={`text-xl sm:text-2xl font-bold text-white tracking-tight transition-colors ${theme.accentColor}`}
             >
@@ -132,7 +125,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreview }) 
           </div>
 
           {/* Tech Badges */}
-          <div className="flex flex-wrap gap-1.5 pt-2 border-t border-white/10">
+          <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/10 mb-5">
             {project.techStack.slice(0, 4).map((tech, i) => (
               <span
                 key={i}
@@ -177,7 +170,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreview }) 
             )}
           </div>
         </div>
-      </BorderGlow>
+      </ElectricBorder>
     </div>
   );
 };
