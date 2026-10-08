@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { LockInScreen } from './components/LockInScreen';
+import { BackgroundVibe } from './components/BackgroundVibe';
 import { Navbar } from './components/Navbar';
 import { HeroArtwork } from './components/HeroArtwork';
 import { ProjectCard } from './components/ProjectCard';
@@ -55,22 +56,8 @@ export function App() {
       {/* 2. Mechanical Shutter Slam & Crack Calibration Screen */}
       <LockInScreen isOpen={showLockIn} onUnlocked={() => setShowLockIn(false)} />
 
-      {/* 3. Regal Dark Green Background with Architectural Gold Hairlines */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Deep ambient radial glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[750px] bg-[radial-gradient(ellipse_at_top,_rgba(212,175,55,0.08)_0%,_rgba(6,29,20,0.6)_45%,_transparent_75%)] blur-2xl" />
-        <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-[radial-gradient(circle,_rgba(11,43,31,0.5)_0%,_transparent_70%)] blur-3xl" />
-
-        {/* Architectural hairline grid */}
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(212, 175, 55, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(212, 175, 55, 0.4) 1px, transparent 1px)',
-            backgroundSize: '48px 48px'
-          }}
-        />
-      </div>
+      {/* 3. The Vibecoder Blueprint Grid & Dot Matrix, Ambient Emerald Orbs & Tactile Noise */}
+      <BackgroundVibe />
 
       {/* Navigation Bar */}
       <Navbar onReopenLockIn={() => setShowLockIn(true)} />
