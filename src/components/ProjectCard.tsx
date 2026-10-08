@@ -69,9 +69,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreview }) 
           </div>
 
           {/* Actual Interface Screenshot */}
-          <div
+          <button
+            type="button"
             onClick={() => onPreview(project)}
-            className="cursor-target relative aspect-[16/10] overflow-hidden bg-black/60 cursor-pointer group/screenshot"
+            aria-label={`Inspect ${project.title} specifications and architecture`}
+            className="cursor-target relative aspect-[16/10] w-full text-left overflow-hidden bg-black/60 cursor-pointer group/screenshot block border-0 p-0"
           >
             <img
               src={project.image}
@@ -86,7 +88,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onPreview }) 
                 <ArrowUpRight className="w-3.5 h-3.5 text-[#d4af37]" />
               </span>
             </div>
-          </div>
+          </button>
         </div>
       </div>
 
