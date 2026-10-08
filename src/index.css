@@ -13,8 +13,8 @@ html {
 body {
   margin: 0;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  background-color: #080a10;
-  color: #f8fafc;
+  background-color: #04140e;
+  color: #fbf8f1;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -28,28 +28,28 @@ body {
   backface-visibility: hidden;
 }
 
-/* Custom Sleek Scrollbar in Obsidian & Cyan */
+/* Custom Sleek Scrollbar in Imperial Gold & Dark Green */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #080a10;
+  background: #04140e;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #0c3927;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #38bdf8;
+  background: #d4af37;
 }
 
 /* Glassmorphism helpers */
 .glass-panel {
-  background: rgba(15, 18, 28, 0.75);
+  background: rgba(6, 29, 20, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.18);
 }
