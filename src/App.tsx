@@ -8,6 +8,7 @@ import { ProjectModal, ProjectData } from './components/ProjectModal';
 import { FeedbackSection } from './components/FeedbackSection';
 import { StrokeText } from './components/reactbits/StrokeText';
 import { BlurText } from './components/reactbits/BlurText';
+import { ShinyText } from './components/reactbits/ShinyText';
 import TargetCursor from './components/reactbits/TargetCursor';
 import { PROJECTS } from './data/projects';
 import { GithubIcon } from './components/icons/GithubIcon';
@@ -22,9 +23,7 @@ import {
   ShieldCheck,
   Zap,
   Copy,
-  Check,
-  Radio,
-  Clock
+  Check
 } from 'lucide-react';
 
 export function App() {
@@ -43,31 +42,40 @@ export function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#04140e] text-[#fbf8f1] overflow-x-hidden selection:bg-[#d4af37] selection:text-[#04140e] font-sans">
-      {/* 1. TargetCursor snapping onto .cursor-target elements in Imperial Gold */}
+    <div className="relative min-h-screen bg-[#080a10] text-[#f8fafc] overflow-x-hidden selection:bg-sky-500 selection:text-white font-sans">
+      {/* 1. TargetCursor snapping onto .cursor-target elements */}
       <TargetCursor
         targetSelector=".cursor-target"
         spinDuration={2}
-        cursorColor="#d4af37"
-        cursorColorOnTarget="#fbf8f1"
+        cursorColor="#38bdf8"
+        cursorColorOnTarget="#ffffff"
         hoverDuration={0.2}
       />
 
       {/* 2. Lock-In Preloader & Calibration Screen */}
       <LockInScreen isOpen={showLockIn} onUnlocked={() => setShowLockIn(false)} />
 
-      {/* 3. Regal Dark Green Background with Architectural Gold Hairlines */}
+      {/* 3. Multi-Color Prismatic Ambient Canvas Glows */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Deep ambient radial glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[750px] bg-[radial-gradient(ellipse_at_top,_rgba(212,175,55,0.08)_0%,_rgba(6,29,20,0.6)_45%,_transparent_75%)] blur-2xl" />
-        <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-[radial-gradient(circle,_rgba(11,43,31,0.5)_0%,_transparent_70%)] blur-3xl" />
+        {/* Top-left Electric Sky / Cyan Mesh */}
+        <div className="absolute -top-32 -left-32 w-[650px] h-[650px] bg-[radial-gradient(circle,_rgba(56,189,248,0.12)_0%,_transparent_70%)] blur-3xl" />
         
-        {/* Architectural hairline grid */}
+        {/* Top-right Vivid Violet / Indigo Mesh */}
+        <div className="absolute -top-20 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(129,140,248,0.12)_0%,_transparent_70%)] blur-3xl" />
+        
+        {/* Mid-screen Rose / Coral Ambient Mesh */}
+        <div className="absolute top-1/3 left-1/4 w-[550px] h-[550px] bg-[radial-gradient(circle,_rgba(244,63,94,0.08)_0%,_transparent_70%)] blur-3xl" />
+        
+        {/* Bottom Emerald & Amber Ambient Mesh */}
+        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(16,185,129,0.08)_0%,_transparent_70%)] blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 w-[500px] h-[500px] bg-[radial-gradient(circle,_rgba(245,158,11,0.07)_0%,_transparent_70%)] blur-3xl" />
+
+        {/* Crisp Architectural Grid Matrix */}
         <div
           className="absolute inset-0 opacity-[0.035]"
           style={{
             backgroundImage:
-              'linear-gradient(rgba(212, 175, 55, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(212, 175, 55, 0.4) 1px, transparent 1px)',
+              'linear-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.4) 1px, transparent 1px)',
             backgroundSize: '48px 48px'
           }}
         />
@@ -79,7 +87,7 @@ export function App() {
       <main className="relative z-10">
         {/* Hero Section */}
         <section id="hero" className="relative pt-36 pb-20 md:pt-44 md:pb-28 px-4 sm:px-6 max-w-6xl mx-auto">
-          {/* Identity & Telemetry Row */}
+          {/* Multi-Color Identity Badges */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -87,25 +95,25 @@ export function App() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-wrap items-center gap-2.5 mb-8"
           >
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold bg-[#082419] text-[#d4af37] border border-[#d4af37]/30 backdrop-blur-md font-mono">
-              <Terminal className="w-3.5 h-3.5 text-[#d4af37]" />
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/30 backdrop-blur-md font-mono">
+              <Terminal className="w-3.5 h-3.5 text-sky-400" />
               16yo Independent Software Builder
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-[#061d14] text-[#a3b8aa] border border-[#d4af37]/20">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-amber-500/10 text-amber-300 border border-amber-500/30">
               Class 10 • Army Public School Meerut Cantt
             </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-[#082419] text-[#d4af37] border border-[#d4af37]/25">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-rose-500/10 text-rose-300 border border-rose-500/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse" />
               Handcrafted in India 🇮🇳
             </span>
           </motion.div>
 
-          {/* Main Animated Name Display using StrokeText in Imperial Gold & Ivory */}
+          {/* Main Animated Name Display using StrokeText */}
           <div className="mb-6 -ml-1 overflow-x-auto py-2">
             <StrokeText
               text="Kushagr Rana"
-              strokeColor="#d4af37"
-              fillColor="#fbf8f1"
+              strokeColor="#38bdf8"
+              fillColor="#ffffff"
               strokeWidth={1.8}
               drawDuration={2.4}
               fillDelay={0.3}
@@ -130,31 +138,37 @@ export function App() {
               transition={{ duration: 0.85, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
               className="lg:col-span-7 space-y-5"
             >
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl text-[#fbf8f1] font-extrabold tracking-tight leading-tight">
-                Software, built with craft<span className="text-[#d4af37]">.</span>
+              <h2>
+                <ShinyText
+                  text="Software, built with first-principles craft."
+                  color="#f8fafc"
+                  shineColor="#38bdf8"
+                  speed={2.4}
+                  className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight"
+                />
               </h2>
-              <p className="text-lg sm:text-xl text-[#d1c7a7] font-medium leading-relaxed">
-                I engineer resilient, high-fidelity web systems from first principles. No page builders, no generated bloatware, and zero artificial slop.
+              <p className="text-lg sm:text-xl text-slate-200 font-medium leading-relaxed">
+                I engineer resilient, high-fidelity web systems from scratch. No page builders, no template bloat, and zero artificial slop.
               </p>
-              <p className="text-sm sm:text-base text-[#a3b8aa] leading-relaxed font-normal">
-                I am a 16-year-old student developer from Meerut Cantt, India (Class 10, Army Public School). Every line of client logic, offline service-worker caching, and animation across these systems is written by hand with React 19, TypeScript, and modern browser APIs.
+              <p className="text-sm sm:text-base text-slate-400 leading-relaxed font-normal">
+                I am a 16-year-old student developer from Meerut Cantt, India (Class 10, Army Public School). Every line of client logic, offline caching, and responsive UI across these systems is written by hand with React 19, TypeScript, and modern web standards.
               </p>
 
               {/* Quick Action Buttons (Featuring "Let's Get Started") */}
               <div className="flex flex-wrap items-center gap-4 pt-3">
                 <button
                   onClick={scrollToWorks}
-                  className="cursor-target group inline-flex items-center gap-2.5 px-7 py-4 rounded-xl font-bold text-sm text-[#04140e] bg-gradient-to-r from-[#d4af37] via-[#e5c361] to-[#c29c2d] hover:brightness-105 shadow-xl shadow-[#d4af37]/20 transition-all duration-200 active:scale-95"
+                  className="cursor-target group inline-flex items-center gap-2.5 px-7 py-4 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-sky-500 via-indigo-600 to-rose-500 hover:from-sky-400 hover:via-indigo-500 hover:to-rose-400 shadow-xl shadow-indigo-500/25 transition-all duration-200 active:scale-95"
                 >
                   <span>Let's Get Started</span>
-                  <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5 text-[#04140e]" />
+                  <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
                 </button>
 
                 <a
                   href="https://github.com/rana-kushagr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="cursor-target inline-flex items-center gap-2.5 px-6 py-4 rounded-xl font-semibold text-sm text-[#fbf8f1] bg-[#082419] hover:bg-[#0c3324] border border-[#d4af37]/30 transition-colors shadow-sm"
+                  className="cursor-target inline-flex items-center gap-2.5 px-6 py-4 rounded-xl font-semibold text-sm text-slate-200 bg-white/5 hover:bg-white/10 border border-white/15 transition-colors shadow-sm"
                 >
                   <GithubIcon className="w-4 h-4" />
                   <span>GitHub Profile</span>
@@ -162,9 +176,9 @@ export function App() {
 
                 <button
                   onClick={handleCopyEmail}
-                  className="cursor-target inline-flex items-center gap-2 px-5 py-4 rounded-xl font-mono text-xs font-semibold text-[#d4af37] bg-[#061d14] hover:bg-[#082419] border border-[#d4af37]/25 transition-colors"
+                  className="cursor-target inline-flex items-center gap-2 px-5 py-4 rounded-xl font-mono text-xs font-semibold text-sky-300 bg-sky-950/30 hover:bg-sky-900/40 border border-sky-500/30 transition-colors"
                 >
-                  {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-[#d4af37]" />}
+                  {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-sky-400" />}
                   <span>{copiedEmail ? 'Email Copied!' : 'Copy Email'}</span>
                 </button>
               </div>
@@ -182,34 +196,34 @@ export function App() {
             </motion.div>
           </div>
 
-          {/* Stats / Craftsmanship Proof Cards */}
+          {/* Multi-Color Stats Proof Cards */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-10 border-t border-[#d4af37]/15"
+            className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-10 border-t border-white/10"
           >
-            <div className="p-5 rounded-2xl bg-[#061d14] border border-[#d4af37]/20 shadow-md">
-              <div className="text-2xl sm:text-3xl font-extrabold text-[#d4af37] font-mono">3+</div>
-              <div className="text-xs text-[#a3b8aa] mt-1 font-medium">Flagship Systems Built Solo</div>
+            <div className="p-5 rounded-2xl bg-sky-950/20 border border-sky-500/25 shadow-lg">
+              <div className="text-2xl sm:text-3xl font-extrabold text-sky-400 font-mono">3+</div>
+              <div className="text-xs text-slate-300 mt-1 font-medium">Flagship Systems Built Solo</div>
             </div>
-            <div className="p-5 rounded-2xl bg-[#061d14] border border-[#d4af37]/20 shadow-md">
-              <div className="text-2xl sm:text-3xl font-extrabold text-[#fbf8f1] font-mono">100%</div>
-              <div className="text-xs text-[#a3b8aa] mt-1 font-medium">Offline PWA Resilience</div>
+            <div className="p-5 rounded-2xl bg-rose-950/20 border border-rose-500/25 shadow-lg">
+              <div className="text-2xl sm:text-3xl font-extrabold text-rose-400 font-mono">100%</div>
+              <div className="text-xs text-slate-300 mt-1 font-medium">Offline PWA Resilience</div>
             </div>
-            <div className="p-5 rounded-2xl bg-[#061d14] border border-[#d4af37]/20 shadow-md">
-              <div className="text-2xl sm:text-3xl font-extrabold text-[#d4af37] font-mono">16 y/o</div>
-              <div className="text-xs text-[#a3b8aa] mt-1 font-medium">Class 10 APS Meerut</div>
+            <div className="p-5 rounded-2xl bg-amber-950/20 border border-amber-500/25 shadow-lg">
+              <div className="text-2xl sm:text-3xl font-extrabold text-amber-400 font-mono">16 y/o</div>
+              <div className="text-xs text-slate-300 mt-1 font-medium">Class 10 APS Meerut</div>
             </div>
-            <div className="p-5 rounded-2xl bg-[#061d14] border border-[#d4af37]/20 shadow-md">
-              <div className="text-2xl sm:text-3xl font-extrabold text-[#fbf8f1] font-mono">React 19</div>
-              <div className="text-xs text-[#a3b8aa] mt-1 font-medium">First-Principles TypeScript</div>
+            <div className="p-5 rounded-2xl bg-emerald-950/20 border border-emerald-500/25 shadow-lg">
+              <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono">React 19</div>
+              <div className="text-xs text-slate-300 mt-1 font-medium">First-Principles TypeScript</div>
             </div>
           </motion.div>
         </section>
 
-        {/* About & The Craftsmanship Philosophy */}
+        {/* Philosophy Section with Multi-Color Pillar Cards */}
         <section id="about" className="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <motion.div
@@ -219,71 +233,75 @@ export function App() {
               transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
               className="md:col-span-5 space-y-4"
             >
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#082419] border border-[#d4af37]/30 text-xs font-semibold uppercase tracking-wider text-[#d4af37] font-mono">
-                <Compass className="w-3.5 h-3.5" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-xs font-semibold uppercase tracking-wider text-indigo-300 font-mono">
+                <Compass className="w-3.5 h-3.5 text-indigo-400" />
                 <span>The Engineering Philosophy</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#fbf8f1] tracking-tight leading-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
                 Why I build by hand, from first principles.
               </h2>
-              <p className="text-[#a3b8aa] text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
                 While automated page builders flood the web with brittle, repetitive templates, I build software that feels tactile, fast, and engineered with pride.
               </p>
             </motion.div>
 
             <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Pillar 1: Cyan / Sky */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="p-6 rounded-2xl bg-[#061d14] border border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-colors shadow-lg"
+                className="p-6 rounded-2xl bg-sky-950/20 border border-sky-500/25 hover:border-sky-500/50 transition-colors shadow-lg"
               >
-                <Zap className="w-6 h-6 text-[#d4af37] mb-3" />
-                <h3 className="text-base font-bold text-[#fbf8f1] mb-2">High Craft & Tactile Motion</h3>
-                <p className="text-xs sm:text-sm text-[#a3b8aa] leading-relaxed">
+                <Zap className="w-6 h-6 text-sky-400 mb-3" />
+                <h3 className="text-base font-bold text-white mb-2">High Craft & Tactile Motion</h3>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                   Every interaction should feel crisp and intentional. From GSAP target cursors and pixel-swapped blueprints to SVG drawing, interfaces should reward curiosity.
                 </p>
               </motion.div>
 
+              {/* Pillar 2: Rose / Coral */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="p-6 rounded-2xl bg-[#061d14] border border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-colors shadow-lg"
+                className="p-6 rounded-2xl bg-rose-950/20 border border-rose-500/25 hover:border-rose-500/50 transition-colors shadow-lg"
               >
-                <ShieldCheck className="w-6 h-6 text-[#d4af37] mb-3" />
-                <h3 className="text-base font-bold text-[#fbf8f1] mb-2">Real-World Utility</h3>
-                <p className="text-xs sm:text-sm text-[#a3b8aa] leading-relaxed">
+                <ShieldCheck className="w-6 h-6 text-rose-400 mb-3" />
+                <h3 className="text-base font-bold text-white mb-2">Real-World Utility</h3>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                   Building tools with tangible utility: panic-proof golden-hour first-aid in RakshaSetu, ancestral Ayurvedic wellness in Ahaar Amrit, and focus in FocusFlow.
                 </p>
               </motion.div>
 
+              {/* Pillar 3: Emerald / Mint */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="p-6 rounded-2xl bg-[#061d14] border border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-colors shadow-lg"
+                className="p-6 rounded-2xl bg-emerald-950/20 border border-emerald-500/25 hover:border-emerald-500/50 transition-colors shadow-lg"
               >
-                <Cpu className="w-6 h-6 text-[#d4af37] mb-3" />
-                <h3 className="text-base font-bold text-[#fbf8f1] mb-2">Zero-Bloat Architecture</h3>
-                <p className="text-xs sm:text-sm text-[#a3b8aa] leading-relaxed">
+                <Cpu className="w-6 h-6 text-emerald-400 mb-3" />
+                <h3 className="text-base font-bold text-white mb-2">Zero-Bloat Architecture</h3>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                   Deep respect for client compute. Clean bundle splits, strongly typed contracts in TypeScript, and zero reliance on heavy server backends for offline resilience.
                 </p>
               </motion.div>
 
+              {/* Pillar 4: Amber / Warm */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="p-6 rounded-2xl bg-[#061d14] border border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-colors shadow-lg"
+                className="p-6 rounded-2xl bg-amber-950/20 border border-amber-500/25 hover:border-amber-500/50 transition-colors shadow-lg"
               >
-                <Code2 className="w-6 h-6 text-[#d4af37] mb-3" />
-                <h3 className="text-base font-bold text-[#fbf8f1] mb-2">Relentless Work Ethic</h3>
-                <p className="text-xs sm:text-sm text-[#a3b8aa] leading-relaxed">
+                <Code2 className="w-6 h-6 text-amber-400 mb-3" />
+                <h3 className="text-base font-bold text-white mb-2">Relentless Work Ethic</h3>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                   Balancing Class 10 school examinations with late-night development sessions, testing on physical devices, and refining every edge case.
                 </p>
               </motion.div>
@@ -291,7 +309,7 @@ export function App() {
           </div>
         </section>
 
-        {/* Selected Works Section with BlurText Header */}
+        {/* Selected Works Section with Multi-Color Project Cards */}
         <section id="works" className="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
           {/* Section Tag */}
           <motion.div
@@ -301,7 +319,7 @@ export function App() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center text-center mb-12"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#082419] border border-[#d4af37]/30 text-xs font-semibold uppercase tracking-wider text-[#d4af37] font-mono mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-500/10 border border-sky-500/30 text-xs font-semibold uppercase tracking-wider text-sky-300 font-mono mb-4">
               <Layers className="w-3.5 h-3.5" />
               <span>Solo Portfolio Showcase</span>
             </div>
@@ -313,11 +331,11 @@ export function App() {
                 delay={120}
                 stepDuration={0.45}
                 animateBy="words"
-                className="text-3xl sm:text-5xl font-black text-[#fbf8f1] tracking-tight"
+                className="text-3xl sm:text-5xl font-black text-white tracking-tight"
               />
             </div>
 
-            <p className="text-[#a3b8aa] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
               Three independent flagship web products conceived, architected, and built from scratch as a solo developer.
             </p>
           </motion.div>
@@ -341,30 +359,35 @@ export function App() {
           </div>
         </section>
 
-        {/* Tech Stack Grid */}
+        {/* Tech Stack Grid with Multi-Color Categories */}
         <section id="stack" className="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-[#061d14] border border-[#d4af37]/25 rounded-3xl p-8 sm:p-12 shadow-2xl"
+            className="bg-[#0b0e1a] border border-white/10 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden"
           >
-            <div className="text-center max-w-xl mx-auto mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#082419] border border-[#d4af37]/30 text-xs font-mono text-[#d4af37] uppercase tracking-widest mb-3">
+            {/* Subtle ambient light */}
+            <div className="absolute top-0 right-1/4 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-rose-500/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="text-center max-w-xl mx-auto mb-10 relative z-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-300 uppercase tracking-widest mb-3">
                 Technologies & Craft
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#fbf8f1]">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
                 Tools I use to build fast & durable software
               </h2>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-              <div className="space-y-2">
-                <div className="text-xs font-mono uppercase tracking-wider text-[#d4af37] font-semibold">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 relative z-10">
+              {/* Category 1: Sky / Cyan */}
+              <div className="p-4 rounded-2xl bg-sky-950/20 border border-sky-500/25 space-y-2">
+                <div className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold">
                   Core Frontend
                 </div>
-                <ul className="text-sm text-[#a3b8aa] space-y-1 font-mono">
+                <ul className="text-sm text-slate-200 space-y-1 font-mono">
                   <li>React 19</li>
                   <li>TypeScript 5</li>
                   <li>Vite 6</li>
@@ -372,11 +395,12 @@ export function App() {
                 </ul>
               </div>
 
-              <div className="space-y-2">
-                <div className="text-xs font-mono uppercase tracking-wider text-[#d4af37] font-semibold">
+              {/* Category 2: Rose / Violet */}
+              <div className="p-4 rounded-2xl bg-rose-950/20 border border-rose-500/25 space-y-2">
+                <div className="text-xs font-mono uppercase tracking-wider text-rose-400 font-bold">
                   Styling & Motion
                 </div>
-                <ul className="text-sm text-[#a3b8aa] space-y-1 font-mono">
+                <ul className="text-sm text-slate-200 space-y-1 font-mono">
                   <li>Tailwind CSS</li>
                   <li>Framer Motion</li>
                   <li>GSAP 3</li>
@@ -384,23 +408,25 @@ export function App() {
                 </ul>
               </div>
 
-              <div className="space-y-2">
-                <div className="text-xs font-mono uppercase tracking-wider text-[#d4af37] font-semibold">
-                  Canvas & Interaction
+              {/* Category 3: Amber / Warm */}
+              <div className="p-4 rounded-2xl bg-amber-950/20 border border-amber-500/25 space-y-2">
+                <div className="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold">
+                  Canvas & Motion
                 </div>
-                <ul className="text-sm text-[#a3b8aa] space-y-1 font-mono">
-                  <li>SVG Stroke Animation</li>
+                <ul className="text-sm text-slate-200 space-y-1 font-mono">
+                  <li>SVG Animations</li>
                   <li>Pixel Grid Transforms</li>
                   <li>HTML5 Canvas</li>
-                  <li>Interactive Physics</li>
+                  <li>Physics Fields</li>
                 </ul>
               </div>
 
-              <div className="space-y-2">
-                <div className="text-xs font-mono uppercase tracking-wider text-[#d4af37] font-semibold">
+              {/* Category 4: Mint / Emerald */}
+              <div className="p-4 rounded-2xl bg-emerald-950/20 border border-emerald-500/25 space-y-2">
+                <div className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-bold">
                   Architecture & Offline
                 </div>
-                <ul className="text-sm text-[#a3b8aa] space-y-1 font-mono">
+                <ul className="text-sm text-slate-200 space-y-1 font-mono">
                   <li>Offline-first PWAs</li>
                   <li>Web Speech API</li>
                   <li>Client LocalStorage</li>
@@ -415,18 +441,20 @@ export function App() {
         <FeedbackSection />
 
         {/* Contact & Footer Section */}
-        <footer id="contact" className="py-16 px-4 sm:px-6 max-w-6xl mx-auto border-t border-[#d4af37]/15 text-[#a3b8aa]">
+        <footer id="contact" className="py-16 px-4 sm:px-6 max-w-6xl mx-auto border-t border-white/10 text-slate-400">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="space-y-2 text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start gap-2.5 text-[#fbf8f1] font-bold text-lg">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#d4af37] via-[#c29c2d] to-[#8c6b12] p-[1px] flex items-center justify-center shadow-md">
-                  <div className="w-full h-full bg-[#04140e] rounded-[7px] flex items-center justify-center">
-                    <span className="font-mono text-xs font-black text-[#d4af37]">KR</span>
+              <div className="flex items-center justify-center md:justify-start gap-2.5 text-white font-bold text-lg">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-sky-400 via-indigo-500 to-rose-500 p-[1.5px] flex items-center justify-center shadow-md">
+                  <div className="w-full h-full bg-[#080a10] rounded-[7px] flex items-center justify-center">
+                    <span className="font-mono text-xs font-black bg-gradient-to-r from-sky-300 to-rose-300 bg-clip-text text-transparent">
+                      KR
+                    </span>
                   </div>
                 </div>
                 <span>Kushagr Rana</span>
               </div>
-              <p className="text-xs sm:text-sm text-[#a3b8aa] max-w-md">
+              <p className="text-xs sm:text-sm text-slate-400 max-w-md">
                 16-year-old Independent Software Builder based in Meerut Cantt, India. Open to internships, exciting engineering collaborations, and hackathons.
               </p>
             </div>
@@ -435,29 +463,29 @@ export function App() {
             <div className="flex flex-wrap items-center justify-center gap-3">
               <a
                 href="mailto:kushagrrana7345@gmail.com"
-                className="cursor-target inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#e5c361] to-[#c29c2d] hover:brightness-105 text-[#04140e] text-xs font-bold transition-all shadow-md shadow-[#d4af37]/15"
+                className="cursor-target inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 via-indigo-500 to-rose-500 hover:brightness-110 text-white text-xs font-bold transition-all shadow-md shadow-indigo-500/20"
               >
-                <Mail className="w-3.5 h-3.5 text-[#04140e]" />
+                <Mail className="w-3.5 h-3.5" />
                 <span>kushagrrana7345@gmail.com</span>
               </a>
               <a
                 href="https://github.com/rana-kushagr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="cursor-target inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#082419] hover:bg-[#0c3324] text-[#fbf8f1] text-xs font-semibold border border-[#d4af37]/25 transition-colors"
+                className="cursor-target inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold border border-white/15 transition-colors"
               >
-                <GithubIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                <GithubIcon className="w-3.5 h-3.5 text-sky-400" />
                 <span>GitHub</span>
               </a>
             </div>
           </div>
 
-          <div className="mt-12 pt-6 border-t border-[#d4af37]/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#789382] font-mono">
+          <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-mono">
             <div>
               © {new Date().getFullYear()} Kushagr Rana. Handcrafted with React & TypeScript.
             </div>
             <div className="flex items-center gap-4">
-              <span>MEERUT CANTT // 28.9845° N · 77.7064° E 🇮🇳</span>
+              <span className="text-sky-400">MEERUT CANTT // 28.9845° N · 77.7064° E 🇮🇳</span>
               <span>•</span>
               <span>Class 10 · APS Meerut</span>
             </div>

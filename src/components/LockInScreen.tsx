@@ -26,7 +26,7 @@ export const LockInScreen: React.FC<LockInScreenProps> = ({ isOpen, onUnlocked }
         });
         setIstTime(timeStr);
       } catch {
-        setIstTime('19:45:00');
+        setIstTime('20:00:00');
       }
     };
     updateTime();
@@ -42,7 +42,7 @@ export const LockInScreen: React.FC<LockInScreenProps> = ({ isOpen, onUnlocked }
     setProgress(0);
 
     const start = Date.now();
-    const duration = 1300; // 1.3 seconds smooth calibration
+    const duration = 1200; // 1.2 seconds smooth calibration
 
     const timer = setInterval(() => {
       const elapsed = Date.now() - start;
@@ -57,7 +57,7 @@ export const LockInScreen: React.FC<LockInScreenProps> = ({ isOpen, onUnlocked }
           setTimeout(() => {
             onUnlocked();
           }, 600);
-        }, 350);
+        }, 300);
       }
     }, 24);
 
@@ -79,31 +79,32 @@ export const LockInScreen: React.FC<LockInScreenProps> = ({ isOpen, onUnlocked }
           exit={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: isExiting ? 0 : 1, scale: isExiting ? 1.02 : 1 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-50 flex flex-col justify-between bg-[#04140e] text-[#fbf8f1] p-6 sm:p-10 select-none overflow-hidden"
+          className="fixed inset-0 z-50 flex flex-col justify-between bg-[#080a10] text-[#f8fafc] p-6 sm:p-10 select-none overflow-hidden"
         >
-          {/* Subtle Royal Green & Gold ambient depth */}
+          {/* Prismatic ambient depth */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-[radial-gradient(circle,_rgba(212,175,55,0.08)_0%,_rgba(11,43,31,0.4)_50%,_transparent_75%)] blur-2xl" />
+            <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(56,189,248,0.1)_0%,_transparent_70%)] blur-3xl" />
+            <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(244,63,94,0.08)_0%,_transparent_70%)] blur-3xl" />
             <div
-              className="absolute inset-0 opacity-[0.035]"
+              className="absolute inset-0 opacity-[0.04]"
               style={{
-                backgroundImage: 'radial-gradient(#d4af37 1px, transparent 1px)',
-                backgroundSize: '28px 28px'
+                backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+                backgroundSize: '32px 32px'
               }}
             />
           </div>
 
           {/* Top Bar: Telemetry & Manual Skip */}
-          <div className="relative z-10 flex items-center justify-between font-mono text-xs text-[#d4af37]/70 tracking-widest uppercase">
+          <div className="relative z-10 flex items-center justify-between font-mono text-xs text-sky-400 tracking-widest uppercase">
             <div className="flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
               <span>MEERUT CANTT // 28.9845° N · 77.7064° E</span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="hidden sm:inline">IST {istTime}</span>
+              <span className="hidden sm:inline text-slate-400">IST {istTime}</span>
               <button
                 onClick={handleManualSkip}
-                className="cursor-target px-3 py-1 rounded-md bg-[#d4af37]/10 hover:bg-[#d4af37]/20 border border-[#d4af37]/30 text-[#d4af37] text-[11px] font-semibold transition-colors flex items-center gap-1.5"
+                className="cursor-target px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/15 border border-white/15 text-slate-200 hover:text-white text-[11px] font-semibold transition-colors flex items-center gap-1.5"
               >
                 <span>SKIP TO WORKSPACE</span>
                 <ArrowRight className="w-3 h-3" />
@@ -119,52 +120,56 @@ export const LockInScreen: React.FC<LockInScreenProps> = ({ isOpen, onUnlocked }
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ repeat: Infinity, duration: 8, ease: 'linear' }}
-                className="absolute inset-0 rounded-full border border-dashed border-[#d4af37]/30"
+                className="absolute inset-0 rounded-full border border-dashed border-sky-400/40"
               />
               {/* Corner brackets */}
-              <div className="absolute inset-2 border border-[#d4af37]/50 rounded-lg" />
+              <div className="absolute inset-2 border border-white/40 rounded-lg" />
               {/* Center icon */}
-              <Target className={`w-8 h-8 transition-colors duration-300 ${isLocked ? 'text-[#fbf8f1] scale-110' : 'text-[#d4af37]'}`} />
+              <Target
+                className={`w-8 h-8 transition-colors duration-300 ${
+                  isLocked ? 'text-white scale-110' : 'text-sky-400'
+                }`}
+              />
               {/* Ping circle when locked */}
               {isLocked && (
-                <div className="absolute inset-0 rounded-full bg-[#d4af37]/20 animate-ping pointer-events-none" />
+                <div className="absolute inset-0 rounded-full bg-sky-400/25 animate-ping pointer-events-none" />
               )}
             </div>
 
             {/* Sub-status */}
-            <p className="font-mono text-[11px] sm:text-xs text-[#d4af37] tracking-[0.25em] uppercase mb-3">
-              {isLocked ? '● TARGET LOCK ENGAGED' : 'INITIALIZING SYSTEM TRACE'}
+            <p className="font-mono text-[11px] sm:text-xs text-sky-400 tracking-[0.25em] uppercase mb-3">
+              {isLocked ? '● TARGET LOCK ENGAGED' : 'INITIALIZING SYSTEM CALIBRATION'}
             </p>
 
             {/* Name */}
-            <h1 className="text-3xl sm:text-5xl font-black text-[#fbf8f1] tracking-tight mb-6">
+            <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight mb-6">
               KUSHAGR RANA
             </h1>
 
-            {/* Hairline Progress Rail */}
+            {/* Hairline Multi-Color Progress Rail */}
             <div className="w-full max-w-xs mb-4">
-              <div className="h-[2px] w-full bg-[#0a291d] rounded-full overflow-hidden">
+              <div className="h-[3px] w-full bg-slate-800 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-[#b8860b] via-[#d4af37] to-[#f5e6a3]"
+                  className="h-full bg-gradient-to-r from-sky-400 via-indigo-500 to-rose-400"
                   style={{ width: `${progress}%` }}
                 />
               </div>
             </div>
 
             {/* Numerical Progress Count */}
-            <div className="flex items-center justify-between w-full max-w-xs font-mono text-xs text-[#a3b8aa]">
+            <div className="flex items-center justify-between w-full max-w-xs font-mono text-xs text-slate-400">
               <span>CALIBRATING</span>
-              <span className="text-[#d4af37] font-bold">{progress.toString().padStart(2, '0')}%</span>
+              <span className="text-sky-400 font-bold">{progress.toString().padStart(2, '0')}%</span>
             </div>
           </div>
 
           {/* Bottom Telemetry Note */}
-          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between font-mono text-[11px] text-[#789382] pt-4 border-t border-[#d4af37]/10">
+          <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between font-mono text-[11px] text-slate-400 pt-4 border-t border-white/10">
             <div className="flex items-center gap-2">
-              <Shield className="w-3.5 h-3.5 text-[#d4af37]" />
+              <Shield className="w-3.5 h-3.5 text-sky-400" />
               <span>HANDCRAFTED SOFTWARE // ZERO PAGE BUILDERS</span>
             </div>
-            <div className="mt-2 sm:mt-0">
+            <div className="mt-2 sm:mt-0 text-slate-400">
               CLASS 10 · ARMY PUBLIC SCHOOL · MEERUT
             </div>
           </div>
