@@ -66,6 +66,15 @@ export const DecryptedText: React.FC<DecryptedTextProps> = ({
       : characters.split('');
   }, [useOriginalCharsOnly, text, characters]);
 
+const getCryptoRandom = (): number => {
+  if (typeof window !== 'undefined' && window.crypto && window.crypto.getRandomValues) {
+    const buf = new Uint32Array(1);
+    window.crypto.getRandomValues(buf);
+    return buf[0] / (0xffffffff + 1);
+  }
+  return 0.5;
+};
+
   const shuffleText = useCallback(
     (originalText: string, currentRevealed: Set<number>) => {
       return originalText
@@ -73,7 +82,7 @@ export const DecryptedText: React.FC<DecryptedTextProps> = ({
         .map((char, i) => {
           if (char === ' ') return ' ';
           if (currentRevealed.has(i)) return originalText[i];
-          return availableChars[Math.floor(Math.random() * availableChars.length)];
+          return availableChars[Math.floor(getCryptoRandom() * availableChars.length)];
         })
         .join('');
     },
@@ -118,7 +127,7 @@ export const DecryptedText: React.FC<DecryptedTextProps> = ({
   const removeRandomIndices = useCallback((set: Set<number>, count: number): Set<number> => {
     const arr = Array.from(set);
     for (let i = 0; i < count && arr.length > 0; i++) {
-      const idx = Math.floor(Math.random() * arr.length);
+      const idx = Math.floor(getCryptoRandom() * arr.length);
       arr.splice(idx, 1);
     }
     return new Set(arr);
