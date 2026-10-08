@@ -84,7 +84,7 @@ export const CoverScreen: React.FC<CoverScreenProps> = ({ onEnter, isOpen }) => 
             className="relative z-10 flex flex-col items-center gap-4 max-w-xl mx-auto mb-10"
           >
             <p className="text-base sm:text-lg text-slate-400 font-normal leading-relaxed">
-              16-Year-Old Frontend Developer & Vibecoder
+              16-Year-Old Independent Software Builder
               <span className="block text-sm text-slate-500 mt-1">
                 Class 10 • Army Public School Meerut • India 🇮🇳
               </span>
@@ -121,7 +121,7 @@ export const CoverScreen: React.FC<CoverScreenProps> = ({ onEnter, isOpen }) => 
 
           {/* Bottom credit info */}
           <div className="absolute bottom-6 left-0 right-0 text-center text-xs text-slate-600 font-mono">
-            Crafted with React Bits & Vibecoding • 2026
+            Handcrafted with React Bits & First Principles • 2026
           </div>
         </motion.div>
       )}

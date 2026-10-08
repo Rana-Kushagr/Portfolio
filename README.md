@@ -1,22 +1,21 @@
 # Kushagr Rana — Personal Developer Portfolio ⚡
 
-> **16-Year-Old Frontend Developer & Vibecoder** | Class 10 at Army Public School (APS) Meerut Cantt, India 🇮🇳  
-> High-performance, tactile web applications crafted with React 19, TypeScript, WebGL shaders, and GSAP motion design.
+> **16-Year-Old Independent Software Builder** | Class 10 at Army Public School (APS) Meerut Cantt, India 🇮🇳  
+> High-performance, tactile web applications crafted from first principles with React 19, TypeScript, GSAP motion, and bespoke interactive engineering.
 
 🌐 **Live Website**: [https://rana-kushagr.github.io/Portfolio/](https://rana-kushagr.github.io/Portfolio/)  
- 
 
 ---
 
 ## 🌟 Overview
 
-This is the official portfolio website of **Kushagr Rana**, engineered to showcase technical depth, frontend craft, and 3 flagship solo projects built from scratch.
+This is the official portfolio website of **Kushagr Rana**, engineered to showcase technical depth, frontend craft, and 3 flagship solo systems built completely by hand — zero page builders, zero template bloat, and zero artificial slop.
 
-The site combines architectural rigor with the velocity of modern **vibecoding**—delivering delightful tactile feedback, 60fps animations, and zero-bloat offline resilience.
+The site is designed with a regal Imperial Gold (`#d4af37`) and Royal Dark Green (`#04140e`) aesthetic, featuring live Meerut telemetry (`28.9845° N · 77.7064° E`), magnetic targeting reticle interactions, and instant offline responsiveness.
 
 ---
 
-## 🚀 Flagship Projects Featured
+## 🚀 Flagship Systems Featured
 
 ### 1. **Ahaar Amrit | आहार अमृत**
 *Ancient Ayurvedic Wisdom meets Modern Precision Nutrition*
@@ -27,6 +26,7 @@ The site combines architectural rigor with the velocity of modern **vibecoding**
   - Seasonal **Ritucharya Diets** adapting to Indian climates
   - Satvik Recipe Studio with dosha-balancing micro-nutrient maps
 - **Tech**: React 19, TypeScript, Tailwind CSS, Framer Motion, Local Storage Cache
+- **Live System**: [https://ahaar-amrit.lovable.app](https://ahaar-amrit.lovable.app)
 
 ### 2. **RakshaSetu | रक्षासेतु**
 *India’s Panic-Proof Emergency First-Aid Guide*
@@ -37,6 +37,7 @@ The site combines architectural rigor with the velocity of modern **vibecoding**
   - **One-Tap 112 SOS Triage** formatted for Indian emergency dispatch
   - High-contrast, panic-mode visual trees for cardiac arrest, severe bleeding, burns, and snakebites
 - **Tech**: React 19, TypeScript, PWA Service Workers, Web Speech API, Geolocation API
+- **Live System**: [https://rana-kushagr.github.io/Raksha-Setu/](https://rana-kushagr.github.io/Raksha-Setu/)
 
 ### 3. **FocusFlow**
 *Distraction-Free Study & Deep Work Workspace*
@@ -47,19 +48,20 @@ The site combines architectural rigor with the velocity of modern **vibecoding**
   - Ambient noise generators (soft white noise, ticking clock, rain ambience)
   - 100% Client-Side Privacy: No servers, no tracking, pure focus
 - **Tech**: React 19, TypeScript, Tailwind CSS, Lucide Icons, LocalStorage Persistence
+- **Live System**: [https://rana-kushagr.github.io/Focus-Flow/](https://rana-kushagr.github.io/Focus-Flow/)
 
 ---
 
-## 🎨 Interactive Animations (Powered by React Bits)
+## 🎨 Interactive Motion & Engineering
 
-1. **`<FoldText />`**: 3D unfolding entrance text on the ambient cover page (*"Welcome to the Portfolio of Kushagr Rana"*).
-2. **`<StrokeText />`**: SVG outline drawing & left-to-right wipe fill for Kushagr's name in the hero section.
-3. **`<BlurText />`**: Cascading blur-to-sharp entrance animation for the *"My Works as solo developer"* heading.
-4. **`<BorderGlow />`**: Proximity-reactive mesh gradient and conic glow borders around each project showcase card.
-5. **`<SpecularButton />`**: WebGL-powered 3D rim-illuminated interactive *"Preview"* buttons.
-6. **`<DodgeField />`**: Playful interactive runaway *"No"* button for the recruiter feedback question (*"Did you like it?"*).
-7. **`<Plasma />`**: WebGL raymarched ambient fluid background shader.
-8. **`<GlowCursor />`**: WebGL ribbon energy trail that follows the cursor across the site.
+1. **`<LockInScreen />`**: System lock-in preloader and target calibration screen with live Meerut coordinates (`28.9845° N · 77.7064° E`) and real-time IST clock.
+2. **`<TargetCursor />`**: Magnetic GSAP targeting cursor with golden corner reticles locking onto `.cursor-target` elements.
+3. **`<PixelSwap />`**: Centerpiece interactive element that pixel-swaps between the Royal KR Monogram Crest and the 3-system engineering schematic.
+4. **`<StrokeText />`**: SVG outline drawing and fill sequence for Kushagr's name in Imperial Gold and Ivory.
+5. **`<BlurText />`**: Cascading blur-to-sharp entrance animation for the *"My Works as solo developer"* showcase header.
+6. **`<BorderGlow />`**: Proximity-reactive gold mesh gradient and conic glow borders around each project card.
+7. **`<SpecularButton />`**: 3D rim-illuminated interactive *"Preview System"* buttons.
+8. **`<DodgeField />`**: Playful evasive *"No"* button in the feedback section.
 
 ---
 
@@ -68,7 +70,7 @@ The site combines architectural rigor with the velocity of modern **vibecoding**
 - **Framework**: React 19 + TypeScript
 - **Bundler**: Vite 6
 - **Styling**: Tailwind CSS
-- **Motion & 3D**: GSAP 3, Framer Motion, OGL 1.0 (WebGL GLSL shaders)
+- **Motion & Interaction**: GSAP 3, Framer Motion
 - **Delight**: canvas-confetti, Lucide Icons
 
 ---
@@ -106,4 +108,4 @@ npm run preview
 
 ---
 
-*Crafted with passion, grit, and vibecoding • © 2026 Kushagr Rana*
+*Handcrafted with first principles, grit, and passion • © 2026 Kushagr Rana*

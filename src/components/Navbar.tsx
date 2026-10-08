@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Terminal, Mail, Menu, X, RotateCcw } from 'lucide-react';
+import { Target, Mail, Menu, X, RotateCcw, ExternalLink } from 'lucide-react';
 import { GithubIcon } from './icons/GithubIcon';
 
 interface NavbarProps {
-  onReopenCover: () => void;
+  onReopenLockIn: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onReopenCover }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onReopenLockIn }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [clock, setClock] = useState('--:--:--');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +17,27 @@ export const Navbar: React.FC<NavbarProps> = ({ onReopenCover }) => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const tick = () => {
+      try {
+        setClock(
+          new Date().toLocaleTimeString('en-US', {
+            timeZone: 'Asia/Kolkata',
+            hour12: false,
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+          })
+        );
+      } catch {
+        setClock('19:45:00');
+      }
+    };
+    tick();
+    const interval = setInterval(tick, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   const scrollTo = (id: string) => {
@@ -30,68 +52,68 @@ export const Navbar: React.FC<NavbarProps> = ({ onReopenCover }) => {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#07090e]/80 backdrop-blur-xl border-b border-white/10 shadow-lg py-3'
+          ? 'bg-[#04140e]/85 backdrop-blur-xl border-b border-[#d4af37]/15 shadow-xl py-3'
           : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        {/* Brand Monogram */}
-        <div className="flex items-center gap-3">
+        {/* Brand Monogram & Coordinates */}
+        <div className="flex items-center gap-3.5">
           <a
             href="#hero"
             onClick={(e) => {
               e.preventDefault();
               scrollTo('hero');
             }}
-            className="group flex items-center gap-2.5 font-bold tracking-tight text-white text-lg"
+            className="cursor-target group flex items-center gap-2.5 font-bold tracking-tight text-[#fbf8f1] text-lg"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-emerald-400 p-[1px] shadow-lg shadow-indigo-500/20">
-              <div className="w-full h-full bg-[#07090e] rounded-[11px] flex items-center justify-center group-hover:bg-transparent transition-colors">
-                <span className="font-mono text-sm font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-emerald-300 group-hover:text-white transition-colors">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#d4af37] via-[#c29c2d] to-[#8c6b12] p-[1px] shadow-md shadow-[#d4af37]/15">
+              <div className="w-full h-full bg-[#04140e] rounded-[11px] flex items-center justify-center group-hover:bg-[#082419] transition-colors">
+                <span className="font-mono text-sm font-black text-[#d4af37]">
                   KR
                 </span>
               </div>
             </div>
-            <span className="font-semibold text-slate-200 group-hover:text-white transition-colors">
-              Kushagr<span className="text-indigo-400">.</span>
+            <span className="font-semibold text-[#fbf8f1] tracking-tight">
+              Kushagr Rana<span className="text-[#d4af37]">.</span>
             </span>
           </a>
 
-          <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-mono text-emerald-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Open to Build</span>
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-[#082419] border border-[#d4af37]/20 text-[11px] font-mono text-[#a3b8aa]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse" />
+            <span>MEERUT 28.98° N · {clock} IST</span>
           </div>
         </div>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 bg-white/[0.03] border border-white/10 rounded-full px-4 py-1.5 backdrop-blur-md">
+        {/* Desktop Navigation Links (All magnetized for TargetCursor) */}
+        <nav className="hidden md:flex items-center gap-1 bg-[#061d14]/80 border border-[#d4af37]/20 rounded-full px-4 py-1.5 backdrop-blur-md">
           <button
             onClick={() => scrollTo('hero')}
-            className="px-3.5 py-1 text-xs font-medium text-slate-300 hover:text-white transition-colors"
+            className="cursor-target px-3.5 py-1 text-xs font-mono uppercase tracking-wider text-[#a3b8aa] hover:text-[#d4af37] transition-colors"
           >
-            About
+            Profile
+          </button>
+          <button
+            onClick={() => scrollTo('about')}
+            className="cursor-target px-3.5 py-1 text-xs font-mono uppercase tracking-wider text-[#a3b8aa] hover:text-[#d4af37] transition-colors"
+          >
+            Philosophy
           </button>
           <button
             onClick={() => scrollTo('works')}
-            className="px-3.5 py-1 text-xs font-medium text-slate-300 hover:text-white transition-colors"
+            className="cursor-target px-3.5 py-1 text-xs font-mono uppercase tracking-wider text-[#a3b8aa] hover:text-[#d4af37] transition-colors"
           >
-            Works
+            Systems
           </button>
           <button
             onClick={() => scrollTo('stack')}
-            className="px-3.5 py-1 text-xs font-medium text-slate-300 hover:text-white transition-colors"
+            className="cursor-target px-3.5 py-1 text-xs font-mono uppercase tracking-wider text-[#a3b8aa] hover:text-[#d4af37] transition-colors"
           >
             Stack
           </button>
           <button
-            onClick={() => scrollTo('feedback')}
-            className="px-3.5 py-1 text-xs font-medium text-slate-300 hover:text-white transition-colors"
-          >
-            Feedback
-          </button>
-          <button
             onClick={() => scrollTo('contact')}
-            className="px-3.5 py-1 text-xs font-medium text-slate-300 hover:text-white transition-colors"
+            className="cursor-target px-3.5 py-1 text-xs font-mono uppercase tracking-wider text-[#a3b8aa] hover:text-[#d4af37] transition-colors"
           >
             Contact
           </button>
@@ -99,29 +121,40 @@ export const Navbar: React.FC<NavbarProps> = ({ onReopenCover }) => {
 
         {/* Action Controls */}
         <div className="flex items-center gap-2.5">
+          {/* System Lock-in Replay */}
           <button
-            onClick={onReopenCover}
-            title="Replay intro cover screen"
-            className="p-2 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors"
-            aria-label="Replay intro"
+            onClick={onReopenLockIn}
+            className="cursor-target hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono text-[#d4af37] bg-[#082419] hover:bg-[#0a2e20] border border-[#d4af37]/30 transition-colors shadow-sm"
+            title="Re-run Target Lock-In Calibration"
           >
-            <RotateCcw className="w-4 h-4" />
+            <Target className="w-3.5 h-3.5" />
+            <span>Lock-In</span>
           </button>
 
+          {/* GitHub Link */}
           <a
             href="https://github.com/rana-kushagr"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/25 transition-all"
+            className="cursor-target p-2 rounded-xl text-[#a3b8aa] hover:text-[#fbf8f1] hover:bg-[#082419] transition-colors border border-transparent hover:border-[#d4af37]/20"
+            aria-label="GitHub Profile"
           >
-            <GithubIcon className="w-3.5 h-3.5" />
-            <span>GitHub</span>
+            <GithubIcon className="w-4 h-4" />
+          </a>
+
+          {/* Contact / Email CTA */}
+          <a
+            href="mailto:kushagrrana7345@gmail.com"
+            className="cursor-target inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-[#04140e] bg-gradient-to-r from-[#d4af37] via-[#e5c361] to-[#c29c2d] hover:brightness-105 shadow-md shadow-[#d4af37]/15 transition-all"
+          >
+            <Mail className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Get In Touch</span>
           </a>
 
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:text-white"
+            className="cursor-target md:hidden p-2 rounded-xl text-[#a3b8aa] hover:text-[#fbf8f1] hover:bg-[#082419] transition-colors border border-[#d4af37]/20"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -129,49 +162,55 @@ export const Navbar: React.FC<NavbarProps> = ({ onReopenCover }) => {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden px-4 pt-3 pb-6 bg-[#07090e]/95 backdrop-blur-2xl border-b border-white/10 space-y-2">
-          <button
-            onClick={() => scrollTo('hero')}
-            className="block w-full text-left px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-white/5"
-          >
-            About & Bio
-          </button>
-          <button
-            onClick={() => scrollTo('works')}
-            className="block w-full text-left px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-white/5"
-          >
-            Selected Works
-          </button>
-          <button
-            onClick={() => scrollTo('stack')}
-            className="block w-full text-left px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-white/5"
-          >
-            Technology Stack
-          </button>
-          <button
-            onClick={() => scrollTo('feedback')}
-            className="block w-full text-left px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-white/5"
-          >
-            Recruiter Feedback
-          </button>
-          <button
-            onClick={() => scrollTo('contact')}
-            className="block w-full text-left px-4 py-2.5 rounded-lg text-sm text-slate-300 hover:bg-white/5"
-          >
-            Contact
-          </button>
-          <div className="pt-2 border-t border-white/10 flex gap-2">
-            <a
-              href="https://github.com/rana-kushagr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-semibold"
+        <div className="md:hidden mt-3 px-4 pb-4 pt-2 bg-[#04140e]/95 backdrop-blur-2xl border-b border-[#d4af37]/20 shadow-2xl">
+          <div className="flex flex-col gap-2">
+            <button
+              onClick={() => scrollTo('hero')}
+              className="cursor-target text-left px-4 py-2.5 text-sm font-medium text-[#fbf8f1] hover:bg-[#082419] rounded-xl transition-colors"
             >
-              <GithubIcon className="w-3.5 h-3.5" />
-              <span>GitHub Profile</span>
-            </a>
+              Profile
+            </button>
+            <button
+              onClick={() => scrollTo('about')}
+              className="cursor-target text-left px-4 py-2.5 text-sm font-medium text-[#fbf8f1] hover:bg-[#082419] rounded-xl transition-colors"
+            >
+              Philosophy
+            </button>
+            <button
+              onClick={() => scrollTo('works')}
+              className="cursor-target text-left px-4 py-2.5 text-sm font-medium text-[#fbf8f1] hover:bg-[#082419] rounded-xl transition-colors"
+            >
+              Flagship Systems
+            </button>
+            <button
+              onClick={() => scrollTo('stack')}
+              className="cursor-target text-left px-4 py-2.5 text-sm font-medium text-[#fbf8f1] hover:bg-[#082419] rounded-xl transition-colors"
+            >
+              Technical Stack
+            </button>
+            <button
+              onClick={() => scrollTo('contact')}
+              className="cursor-target text-left px-4 py-2.5 text-sm font-medium text-[#fbf8f1] hover:bg-[#082419] rounded-xl transition-colors"
+            >
+              Contact
+            </button>
+            <div className="pt-2 border-t border-[#d4af37]/15 flex items-center justify-between">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onReopenLockIn();
+                }}
+                className="cursor-target text-xs font-mono text-[#d4af37] flex items-center gap-1.5 px-3 py-2"
+              >
+                <Target className="w-3.5 h-3.5" />
+                <span>Re-run Lock-In</span>
+              </button>
+              <span className="text-[11px] font-mono text-[#a3b8aa]">
+                MEERUT {clock}
+              </span>
+            </div>
           </div>
         </div>
       )}
